@@ -115,9 +115,9 @@ namespace FinalTest1
             lblStatus.Text = string.Empty;
         }
 
-        protected void btnClose_Click(object sender, EventArgs e)
+        protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("FinalMainPage.aspx");
+            Response.Redirect("PhysicianList.aspx");
         }
     }
 }

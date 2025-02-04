@@ -1,13 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PhysicianList.aspx.cs" Inherits="FinalTest1.PhysicianList" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PhysicianList.aspx.cs" MasterPageFile="Pharmacy.Master" Inherits="FinalTest1.PhysicianList" %>
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <title>Physician List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-</head>
-<body>
+
+
     <form id="form1" runat="server" class="container my-5">
     <div class="card shadow-lg p-4">
         <h2 class="mb-4 text-center">Patient List</h2>
@@ -27,7 +25,6 @@
                 <asp:BoundField DataField="Specialty1" HeaderText="Specialty 1" />
                 <asp:BoundField DataField="Specialty2" HeaderText="Specialty 2" />
 
-                <!-- Edit Button -->
                 <asp:TemplateField HeaderText="Actions">
                     <ItemTemplate>
                         <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="btn btn-primary btn-sm"
@@ -46,5 +43,5 @@
         </div>
     </div>
 </form>
-</body>
-</html>
+</asp:Content>
+

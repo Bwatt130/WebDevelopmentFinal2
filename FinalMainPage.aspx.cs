@@ -13,14 +13,9 @@ namespace FinalTest1
         {
         }
 
-        protected void btnPatientRegistration_Click(object sender, EventArgs e)
+        protected void btnPrescriptions_Click(object sender, EventArgs e)
         {
-            Response.Redirect("PatientRegistration.aspx");
-        }
-
-        protected void btnPrescription_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Prescription.aspx");
+            Response.Redirect("PrescriptionList.aspx");
         }
 
         protected void btnUpdatePatient_Click(object sender, EventArgs e)
@@ -28,25 +23,20 @@ namespace FinalTest1
             Response.Redirect("PatientList.aspx");
         }
 
-        protected void btnPrescriptionRefill_Click(object sender, EventArgs e)
+        protected void btnRefill_Click(object sender, EventArgs e)
         {
-            Response.Redirect("PrescriptionRefill.aspx");
+            Response.Redirect("ViewRefills.aspx");
         }
 
-        protected void btnPhysicianRegistration_Click(object sender, EventArgs e)
+        protected void btnUpdatePhysician_Click(object sender, EventArgs e)
         {
-            Response.Redirect("PhysicianRegistration.aspx");
+            Response.Redirect("PhysicianList.aspx");
         }
 
         protected void btnClose_Click(object sender, EventArgs e)
         {
             // Close functionality does not directly apply in a web application.
             Response.Redirect("Goodbye.aspx");
-        }
-
-        protected void btnUpdatePhysician_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("UpdatePhysician.aspx");
         }
     }
 }

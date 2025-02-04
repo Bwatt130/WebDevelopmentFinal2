@@ -1,12 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PhysicianRegistration.aspx.cs" Inherits="FinalTest1.PhysicianRegistration" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PhysicianRegistration.aspx.cs" MasterPageFile="Pharmacy.Master" Inherits="FinalTest1.PhysicianRegistration" %>
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Physician Registration</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-</head>
-<body>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <form id="form1" runat="server" class="container my-5">
         <div class="card shadow-lg p-4">
             <h2 class="mb-4 text-center">Physician Registration</h2>
@@ -75,13 +74,11 @@
                 </div>
             </div>
             <div class="text-center mt-4">
-                <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary" />
-                <asp:Button ID="btnClear" runat="server" Text="Clear" CssClass="btn btn-secondary" />
-                <asp:Button ID="btnClose" runat="server" Text="Close" CssClass="btn btn-danger" OnClick="btnClose_Click" />
+                <asp:Button ID="btnSubmit" runat="server" Text="Register Physician" CssClass="btn btn-primary" OnClick="btnSubmit_Click" />
+                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-secondary" OnClick="btnCancel_Click" />
             </div>
             <asp:Label ID="lblStatus" runat="server" CssClass="text-danger mt-3 d-block"></asp:Label>
         </div>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</asp:Content>

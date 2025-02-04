@@ -42,7 +42,6 @@ namespace FinalTest1
             }
             catch (Exception ex)
             {
-                // Display an error message
                 lblError.Text = "Error loading patients: " + ex.Message;
                 lblError.ForeColor = System.Drawing.Color.Red;
             }

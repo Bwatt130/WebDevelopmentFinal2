@@ -1,12 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UpdatePatient.aspx.cs" Inherits="FinalTest1.UpdatePatient" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UpdatePatient.aspx.cs" MasterPageFile="Pharmacy.Master" Inherits="FinalTest1.UpdatePatient" %>
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Update Patient Information</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-</head>
-<body>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <form id="form1" runat="server" class="container my-5">
         <div class="card shadow-lg p-4">
             <h2 class="mb-4 text-center">Update Patient Information</h2>
@@ -52,8 +51,10 @@
                     <asp:TextBox ID="txtCity" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div class="col-md-6">
-                    <label for="txtState" class="form-label">State</label>
-                    <asp:TextBox ID="txtState" runat="server" CssClass="form-control"></asp:TextBox>
+                    <label for="ddlState" class="form-label">State</label>
+                    <asp:DropDownList ID="ddlState" runat="server" CssClass="form-control"/>
+                    <asp:RequiredFieldValidator ID="rfvState" runat="server" ControlToValidate="ddlState"
+                        InitialValue="" ErrorMessage="Please select a state." ForeColor="Red" CssClass="small d-block" />
                 </div>
                 <div class="col-md-6">
                     <label for="txtZip" class="form-label">Zip Code</label>
@@ -76,5 +77,5 @@
         </div>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</asp:Content>
+

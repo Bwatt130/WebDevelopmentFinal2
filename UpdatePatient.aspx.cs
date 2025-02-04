@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectName;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -16,6 +17,11 @@ namespace FinalTest1
         {
             if (!IsPostBack)
             {
+                ddlState.DataSource = StateManager.getStates();
+                ddlState.DataTextField = "FullAndAbbrev";
+                ddlState.DataValueField = "abbreviation";
+                ddlState.SelectedValue = "PA";
+                ddlState.DataBind();
                 string patientID = Request.QueryString["PatientID"];
                 if (!string.IsNullOrEmpty(patientID))
                 {
@@ -37,7 +43,7 @@ namespace FinalTest1
                 txtMiddleInt.Text = row["MiddleInitial"].ToString();
                 txtStreetName.Text = row["StreetName"].ToString();
                 txtCity.Text = row["City"].ToString();
-                txtState.Text = row["State"].ToString();
+                ddlState.Text = row["State"].ToString();
                 txtZip.Text = row["ZipCode"].ToString();
                 txtPhoneNumber.Text = row["PhoneNumber"].ToString();
                 txtEmail.Text = row["Email"].ToString();
@@ -71,7 +77,7 @@ namespace FinalTest1
                 string email = txtEmail.Text;
                 string streetName = txtStreetName.Text;
                 string city = txtCity.Text;
-                string state = txtState.Text;
+                string state = ddlState.SelectedValue;
                 string zip = txtZip.Text;
                 string primaryInsurance = txtPrimaryInsurance.Text;
                 string secondaryInsurance = txtSecondaryInsurance.Text;

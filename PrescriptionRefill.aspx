@@ -1,12 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PrescriptionRefill.aspx.cs" Inherits="FinalTest1.PrescriptionRefill" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PrescriptionRefill.aspx.cs" MasterPageFile="Pharmacy.Master" Inherits="FinalTest1.PrescriptionRefill" %>
 
-<!DOCTYPE html>
 
-<html>
-<head runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Prescription Refill</title>
-</head>
-<body>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <form id="form1" runat="server">
         <div>
             <h1>Prescription Refill</h1>
@@ -28,5 +26,4 @@
             <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
         </div>
     </form>
-</body>
-</html>
+</asp:Content>
