@@ -1,12 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Prescription.aspx.cs" Inherits="FinalTest1.Prescription" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddPrescription.aspx.cs" MasterPageFile="Pharmacy.Master" Inherits="FinalTest1.Prescription" %>
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Prescription</title>
-</head>
-<body>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    </asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <form id="form1" runat="server">
         <div>
             <h1>Add Prescription</h1>
@@ -66,5 +63,4 @@
             <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
         </div>
     </form>
-</body>
-</html>
+</asp:Content>

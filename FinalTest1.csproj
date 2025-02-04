@@ -67,18 +67,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="EditPrescription.aspx" />
     <Content Include="FinalMainPage.aspx" />
     <Content Include="PatientList.aspx" />
     <Content Include="PatientRegistration.aspx" />
     <Content Include="PhysicianList.aspx" />
-    <Content Include="Prescription.aspx" />
+    <Content Include="AddPrescription.aspx" />
     <Content Include="PhysicianRegistration.aspx" />
+    <Content Include="PrescriptionList.aspx" />
     <Content Include="PrescriptionRefill.aspx" />
     <Content Include="State.xml" />
     <Content Include="UpdatePatient.aspx" />
+    <Content Include="UpdatePhysician.aspx" />
+    <Content Include="ViewRefills.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditPrescription.aspx.cs">
+      <DependentUpon>EditPrescription.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditPrescription.aspx.designer.cs">
+      <DependentUpon>EditPrescription.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FinalMainPage.aspx.cs">
       <DependentUpon>FinalMainPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -100,6 +111,13 @@
     <Compile Include="PatientRegistration.aspx.designer.cs">
       <DependentUpon>PatientRegistration.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pharmacy.Master.cs">
+      <DependentUpon>Pharmacy.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pharmacy.Master.designer.cs">
+      <DependentUpon>Pharmacy.Master</DependentUpon>
+    </Compile>
     <Compile Include="PharmacyDataTier.cs" />
     <Compile Include="PhysicianList.aspx.cs">
       <DependentUpon>PhysicianList.aspx</DependentUpon>
@@ -108,12 +126,12 @@
     <Compile Include="PhysicianList.aspx.designer.cs">
       <DependentUpon>PhysicianList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Prescription.aspx.cs">
-      <DependentUpon>Prescription.aspx</DependentUpon>
+    <Compile Include="AddPrescription.aspx.cs">
+      <DependentUpon>AddPrescription.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Prescription.aspx.designer.cs">
-      <DependentUpon>Prescription.aspx</DependentUpon>
+    <Compile Include="AddPrescription.aspx.designer.cs">
+      <DependentUpon>AddPrescription.aspx</DependentUpon>
     </Compile>
     <Compile Include="PhysicianRegistration.aspx.cs">
       <DependentUpon>PhysicianRegistration.aspx</DependentUpon>
@@ -121,6 +139,13 @@
     </Compile>
     <Compile Include="PhysicianRegistration.aspx.designer.cs">
       <DependentUpon>PhysicianRegistration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrescriptionList.aspx.cs">
+      <DependentUpon>PrescriptionList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrescriptionList.aspx.designer.cs">
+      <DependentUpon>PrescriptionList.aspx</DependentUpon>
     </Compile>
     <Compile Include="PrescriptionRefill.aspx.cs">
       <DependentUpon>PrescriptionRefill.aspx</DependentUpon>
@@ -139,9 +164,24 @@
     <Compile Include="UpdatePatient.aspx.designer.cs">
       <DependentUpon>UpdatePatient.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UpdatePhysician.aspx.cs">
+      <DependentUpon>UpdatePhysician.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpdatePhysician.aspx.designer.cs">
+      <DependentUpon>UpdatePhysician.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewRefills.aspx.cs">
+      <DependentUpon>ViewRefills.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewRefills.aspx.designer.cs">
+      <DependentUpon>ViewRefills.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Pharmacy.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

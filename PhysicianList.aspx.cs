@@ -18,7 +18,7 @@ namespace FinalTest1
                 BindPhysicianGrid();
             }
         }
-        protected void LoadPhysicians()
+        protected void LoadPhysicianData()
         {
             try
             {
@@ -34,15 +34,50 @@ namespace FinalTest1
                 {
                     gvPhysicians.DataSource = null;
                     gvPhysicians.DataBind();
-                    lblStatus.Text = "No physicians found.";
-                    lblStatus.ForeColor = System.Drawing.Color.Blue;
+                    lblError.Text = "No physicians found.";
+                    lblError.ForeColor = System.Drawing.Color.Blue;
                 }
             }
             catch (Exception ex)
             {
-                lblStatus.Text = "Error loading physicians: " + ex.Message;
-                lblStatus.ForeColor = System.Drawing.Color.Red;
+                lblError.Text = "Error loading physicians: " + ex.Message;
+                lblError.ForeColor = System.Drawing.Color.Red;
             }
+        }
+        protected void gvPhysicians_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvPhysicians.PageIndex = e.NewPageIndex; // Set the new page index
+            BindPhysicianGrid();
+        }
+
+        private void BindPhysicianGrid()
+        {
+            PharmacyDataTier dataTier = new PharmacyDataTier();
+            DataSet ds = dataTier.ListPhysicians();
+
+            if (ds != null && ds.Tables.Count > 0)
+            {
+                gvPhysicians.DataSource = ds.Tables[0];
+                gvPhysicians.DataBind();
+            }
+        }
+
+        protected void gvPhysicians_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "EditPhysician")
+            {
+                string physicianID = e.CommandArgument.ToString();
+                Response.Redirect("UpdatePhysician.aspx?PhysicianID=" + physicianID);
+            }
+        }
+
+        protected void btnRegisterNew_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("PhysicianRegistration.aspx");
+        }
+        protected void btnBackToMain_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("FinalMainPage.aspx");
         }
     }
 }
