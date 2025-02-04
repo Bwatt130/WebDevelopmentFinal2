@@ -209,6 +209,7 @@ namespace FinalTest1
             {
                 myConn.Open();
                 cmdString.Parameters.Clear();
+                cmdString.Connection = myConn;
                 cmdString.CommandType = CommandType.StoredProcedure;
                 cmdString.CommandTimeout = 1500;
                 cmdString.CommandText = "ListPatients";
@@ -235,6 +236,7 @@ namespace FinalTest1
             {
                 myConn.Open();
                 cmdString.Parameters.Clear();
+                cmdString.Connection = myConn;
                 cmdString.CommandType = CommandType.StoredProcedure;
                 cmdString.CommandText = "ListPhysicians";
 
@@ -260,6 +262,8 @@ namespace FinalTest1
             {
                 myConn.Open();
                 cmdString.Parameters.Clear();
+
+                cmdString.Connection = myConn;
                 cmdString.CommandType = CommandType.StoredProcedure;
                 cmdString.CommandTimeout = 1500;
                 cmdString.CommandText = "ListPrescriptions";
