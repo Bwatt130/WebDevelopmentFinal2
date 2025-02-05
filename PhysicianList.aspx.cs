@@ -62,6 +62,19 @@ namespace FinalTest1
             }
         }
 
+        protected void gvPhysicians_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            DataSet ds = new PharmacyDataTier().ListPhysicians();
+            if (ds != null && ds.Tables.Count > 0)
+            {
+                DataView dv = ds.Tables[0].DefaultView;
+                dv.Sort = e.SortExpression + " ASC";
+
+                gvPhysicians.DataSource = dv;
+                gvPhysicians.DataBind();
+            }
+        }
+
         protected void gvPhysicians_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "EditPhysician")

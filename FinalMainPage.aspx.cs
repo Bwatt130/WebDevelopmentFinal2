@@ -32,11 +32,5 @@ namespace FinalTest1
         {
             Response.Redirect("PhysicianList.aspx");
         }
-
-        protected void btnClose_Click(object sender, EventArgs e)
-        {
-            // Close functionality does not directly apply in a web application.
-            Response.Redirect("Goodbye.aspx");
-        }
     }
 }

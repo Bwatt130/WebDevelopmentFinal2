@@ -58,11 +58,10 @@ namespace FinalTest1
             try
             {
                 PharmacyDataTier dataTier = new PharmacyDataTier();
-
-                string physicianID = txtPhysicianID.Text;
-                string firstName = txtFirstName.Text.Trim();
-                string lastName = txtLastName.Text.Trim();
-                string middleInitial = txtMiddleInitial.Text.Trim();
+                string physicianID = "";
+                string firstName = "";
+                string lastName = "";
+                string middleInitial = "";
 
                 DateTime dob;
                 if (!DateTime.TryParse(txtDOB.Text, out dob))
@@ -73,16 +72,30 @@ namespace FinalTest1
                 }
 
                 string gender = ddlGender.SelectedValue;
-                string phoneNumber = txtPhoneNumber.Text.Trim();
-                string email = txtEmail.Text.Trim();
-                string streetName = txtStreetName.Text.Trim();
-                string city = txtCity.Text.Trim();
-                string state = ddlState.SelectedValue;
-                string zipCode = txtZipCode.Text.Trim();
-                string specialty1 = txtSpecialty1.Text.Trim();
-                string specialty2 = txtSpecialty2.Text.Trim();
+                string phoneNumber = "";
+                string email = "";
+                string streetName = "";
+                string city = "";
+                string state = "";
+                string zipCode = "";
+                string primarySpecialty = "";
+                string secondarySpecialty = "";
 
-                bool success = dataTier.UpdatePhysician(physicianID, firstName, middleInitial, lastName, streetName, city, state, zipCode, phoneNumber, email, gender, dob.ToString("yyyy-MM-dd"), specialty1, specialty2);
+                physicianID = txtPhysicianID.Text.Trim();
+                firstName = txtFirstName.Text.Trim();
+                lastName = txtLastName.Text.Trim();
+                middleInitial = txtMiddleInitial.Text.Trim();
+                gender = ddlGender.SelectedValue;
+                phoneNumber = txtPhoneNumber.Text.Trim();
+                email = txtEmail.Text.Trim();
+                streetName = txtStreetName.Text.Trim();
+                city = txtCity.Text.Trim();
+                state = ddlState.SelectedValue;
+                zipCode = txtZipCode.Text.Trim();
+                primarySpecialty = txtSpecialty1.Text.Trim();
+                secondarySpecialty = txtSpecialty2.Text.Trim();
+
+                bool success = dataTier.UpdatePhysician(physicianID, firstName, lastName, middleInitial, dob, gender, phoneNumber, email, streetName, city, state, zipCode, primarySpecialty, secondarySpecialty);
 
                 if (success)
                 {
@@ -101,6 +114,7 @@ namespace FinalTest1
                 lblStatus.ForeColor = System.Drawing.Color.Red;
             }
         }
+
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
