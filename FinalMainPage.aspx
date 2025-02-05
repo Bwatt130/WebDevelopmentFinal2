@@ -10,8 +10,6 @@
             <asp:Button ID="btnListPatients" runat="server" Text="Patients" OnClick="btnUpdatePatient_Click" />
             <asp:Button ID="btnListPhysicians" runat="server" Text="Physicians" OnClick="btnUpdatePhysician_Click" />
             <asp:Button ID="btnPrescription" runat="server" Text="Prescriptions" OnClick="btnPrescriptions_Click" />
-            <asp:Button ID="btnRefill" runat="server" Text="Refills" OnClick="btnRefill_Click" />
-            <asp:Button ID="btnClose" runat="server" Text="Close" OnClick="btnClose_Click" />
         </div>
     </form>
 </asp:Content>

@@ -51,6 +51,15 @@ namespace FinalTest1
         protected global::System.Web.UI.WebControls.TextBox txtFrequency;
 
         /// <summary>
+        /// txtMedicationName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMedicationName;
+
+        /// <summary>
         /// txtPrescriptionDate control.
         /// </summary>
         /// <remarks>

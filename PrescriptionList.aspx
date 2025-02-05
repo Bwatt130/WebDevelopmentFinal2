@@ -17,7 +17,7 @@
                     <asp:BoundField DataField="RXNum" HeaderText="RX Number" SortExpression="RXNum" ReadOnly="True" />
                     <asp:BoundField DataField="PatientID" HeaderText="Patient ID" SortExpression="PatientID" />
                     <asp:BoundField DataField="PhysicianID" HeaderText="Physician ID" SortExpression="PhysicianID" />
-                    <asp:BoundField DataField="MedicationID" HeaderText="Medication ID" SortExpression="MedicationID" />
+                    <asp:BoundField DataField="MedicationName" HeaderText="Medication Name" SortExpression="MedicationName" />
                     <asp:BoundField DataField="Dosage" HeaderText="Dosage" SortExpression="Dosage" />
                     <asp:BoundField DataField="Frequency" HeaderText="Frequency" SortExpression="Frequency" />
                     <asp:BoundField DataField="PrescriptionDate" HeaderText="Date Prescribed" SortExpression="PrescriptionDate" />

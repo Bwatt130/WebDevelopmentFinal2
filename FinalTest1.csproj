@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="About.aspx" />
     <Content Include="EditPrescription.aspx" />
     <Content Include="FinalMainPage.aspx" />
     <Content Include="PatientList.aspx" />
@@ -75,7 +76,6 @@
     <Content Include="AddPrescription.aspx" />
     <Content Include="PhysicianRegistration.aspx" />
     <Content Include="PrescriptionList.aspx" />
-    <Content Include="PrescriptionRefill.aspx" />
     <Content Include="State.xml" />
     <Content Include="UpdatePatient.aspx" />
     <Content Include="UpdatePhysician.aspx" />
@@ -83,6 +83,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EditPrescription.aspx.cs">
       <DependentUpon>EditPrescription.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -146,13 +153,6 @@
     </Compile>
     <Compile Include="PrescriptionList.aspx.designer.cs">
       <DependentUpon>PrescriptionList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PrescriptionRefill.aspx.cs">
-      <DependentUpon>PrescriptionRefill.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PrescriptionRefill.aspx.designer.cs">
-      <DependentUpon>PrescriptionRefill.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="state.cs" />

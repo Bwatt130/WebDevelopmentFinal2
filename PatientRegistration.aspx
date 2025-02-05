@@ -1,11 +1,11 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PatientRegistration.aspx.cs" MasterPageFile="Pharmacy.Master" Inherits="FinalTest1.PatientRegistration" %>
 
 
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
     <title>Register New Patient</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-</head>
-<body>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <form id="form1" runat="server" class="container my-5">
         <div class="card shadow-lg p-4">
             <h2 class="mb-4 text-center">Register New Patient</h2>
@@ -89,7 +89,7 @@
 
             <div class="text-center mt-4">
                 <asp:Button ID="btnSubmit" runat="server" Text="Register Patient" CssClass="btn btn-primary" OnClick="btnSubmit_Click" />
-                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-secondary" OnClick="btnCancel_Click" />
+                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-secondary" CausesValidation="False" OnClick="btnCancel_Click" />
             </div>
 
         </div>

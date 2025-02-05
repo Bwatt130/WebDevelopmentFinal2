@@ -22,6 +22,10 @@
                     <asp:TextBox ID="txtFrequency" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div class="col-md-6">
+                    <label for="txtMedicationName" class="form-label">Medication Name</label>
+                    <asp:TextBox ID="txtMedicationName" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+                <div class="col-md-6">
                     <label for="txtPrescriptionDate" class="form-label">Prescription Date</label>
                     <asp:TextBox ID="txtPrescriptionDate" runat="server" CssClass="form-control" Placeholder="YYYY-MM-DD"></asp:TextBox>
                 </div>

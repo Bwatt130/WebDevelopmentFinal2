@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectName;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -11,7 +12,7 @@ namespace FinalTest1
         static SqlConnection myConn = new SqlConnection(connString);
         static System.Data.SqlClient.SqlCommand cmdString = new System.Data.SqlClient.SqlCommand();
 
-        public bool UpdatePatient(string patientID, string firstName, string middleInt, string lastName, DateTime dob, string gender, string phoneNumber, string email, string streetName, string city, string state, string zip, string primaryInsurance, string secondaryInsurance)
+        public bool UpdatePatient(string patientID, string firstName, string MiddleInitial, string lastName, DateTime dob, string gender, string phoneNumber, string email, string streetName, string city, string state, string zip, string primaryInsurance, string secondaryInsurance)
         {
             try
             {
@@ -22,7 +23,7 @@ namespace FinalTest1
                 cmdString.CommandText = "UpdatePatientInfo";
                 cmdString.Parameters.AddWithValue("@PatientID", patientID);
                 cmdString.Parameters.AddWithValue("@FirstName", firstName);
-                cmdString.Parameters.AddWithValue("@MiddleInt", middleInt);
+                cmdString.Parameters.AddWithValue("@MiddleInt", MiddleInitial);
                 cmdString.Parameters.AddWithValue("@LastName", lastName);
                 cmdString.Parameters.AddWithValue("@DOB", dob);
                 cmdString.Parameters.AddWithValue("@Gender", gender);
@@ -48,7 +49,10 @@ namespace FinalTest1
             }
         }
 
-        public bool UpdatePhysician(string physicianID, string firstName, string lastName, string middleInitial, string streetName, string city, string state, string zipCode, string phoneNumber, string email, string gender, string dob, string specialty1, string specialty2)
+        public bool UpdatePhysician(string physicianID, string firstName, string lastName,
+            string middleInitial, DateTime? dob, string gender, string phoneNumber,
+            string email, string streetName, string city, string state, string zipCode,
+            string primarySpecialty, string secondarySpecialty)
         {
             try
             {
@@ -56,11 +60,12 @@ namespace FinalTest1
                 cmdString.Parameters.Clear();
                 cmdString.CommandType = CommandType.StoredProcedure;
                 cmdString.CommandTimeout = 1500;
-                cmdString.CommandText = "UpdatePhysicianInfo";
+                cmdString.CommandText = "UpdatePhysicianInformation";
+
                 cmdString.Parameters.AddWithValue("@PhysicianID", physicianID);
                 cmdString.Parameters.AddWithValue("@FirstName", firstName);
-                cmdString.Parameters.AddWithValue("@MiddleInt", middleInitial);
                 cmdString.Parameters.AddWithValue("@LastName", lastName);
+                cmdString.Parameters.AddWithValue("@MiddleInitial", string.IsNullOrEmpty(middleInitial) ? (object)DBNull.Value : middleInitial);
                 cmdString.Parameters.AddWithValue("@DOB", dob);
                 cmdString.Parameters.AddWithValue("@Gender", gender);
                 cmdString.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
@@ -68,9 +73,9 @@ namespace FinalTest1
                 cmdString.Parameters.AddWithValue("@StreetName", streetName);
                 cmdString.Parameters.AddWithValue("@City", city);
                 cmdString.Parameters.AddWithValue("@State", state);
-                cmdString.Parameters.AddWithValue("@Zip", zipCode);
-                cmdString.Parameters.AddWithValue("@Specialty1", specialty1);
-                cmdString.Parameters.AddWithValue("@Specialty2", specialty2);
+                cmdString.Parameters.AddWithValue("@ZipCode", zipCode);
+                cmdString.Parameters.AddWithValue("@Specialty1", primarySpecialty);
+                cmdString.Parameters.AddWithValue("@Specialty2", secondarySpecialty);
 
                 int rowsAffected = cmdString.ExecuteNonQuery();
                 return rowsAffected > 0;
@@ -83,7 +88,6 @@ namespace FinalTest1
             {
                 myConn.Close();
             }
-
         }
 
         public void PatientRegistration(string patientID, string firstName, string middleInt, string lastName, string dob, string gender, string phoneNumber, string email, string streetName, string city, string state, string zip, string primaryInsurance, string secondaryInsurance)
@@ -129,7 +133,7 @@ namespace FinalTest1
             }
         }
 
-        public void PhysicianRegistration(string PhysicianID, string firstName, string middleInt, string lastName, string dob, string gender, string phoneNumber, string email, string streetName, string city, string state, string zip, string Specialty1, string Specialty2)
+        public void PhysicianRegistration(string PhysicianID, string firstName, string MiddleInitial, string lastName, string dob, string gender, string phoneNumber, string email, string streetName, string city, string state, string zip, string Specialty1, string Specialty2)
         {
 
             {
@@ -147,7 +151,7 @@ namespace FinalTest1
                     cmdString.Parameters.Add("@PhysicianID", SqlDbType.VarChar, 50).Value = PhysicianID;
                     cmdString.Parameters.Add("@FirstName", SqlDbType.VarChar, 50).Value = firstName;
                     cmdString.Parameters.Add("@LastName", SqlDbType.VarChar, 50).Value = lastName;
-                    cmdString.Parameters.Add("@MiddleInitial", SqlDbType.Char, 1).Value = middleInt;
+                    cmdString.Parameters.Add("@MiddleInitial", SqlDbType.Char, 1).Value = MiddleInitial;
                     cmdString.Parameters.Add("@StreetName", SqlDbType.VarChar, 100).Value = streetName;
                     cmdString.Parameters.Add("@City", SqlDbType.VarChar, 50).Value = city;
                     cmdString.Parameters.Add("@State", SqlDbType.VarChar, 2).Value = state;
@@ -174,7 +178,7 @@ namespace FinalTest1
             }
         }
 
-        public bool ModifyPrescription(int rxNum, string dosage, string frequency, string prescriptionDate, string administrationRoute, int refillCount)
+        public bool ModifyPrescription(int rxNum, string dosage, string frequency, string medicationName, string prescriptionDate, string administrationRoute, int refillCount)
         {
             try
             {
@@ -186,6 +190,7 @@ namespace FinalTest1
                 cmdString.Parameters.AddWithValue("@RXNum", rxNum);
                 cmdString.Parameters.AddWithValue("@Dosage", string.IsNullOrEmpty(dosage) ? (object)DBNull.Value : dosage);
                 cmdString.Parameters.AddWithValue("@Frequency", string.IsNullOrEmpty(frequency) ? (object)DBNull.Value : frequency);
+                cmdString.Parameters.AddWithValue("@MedicationName", string.IsNullOrEmpty(medicationName) ? (object)DBNull.Value : medicationName);
                 cmdString.Parameters.AddWithValue("@PrescriptionDate", string.IsNullOrEmpty(prescriptionDate) ? (object)DBNull.Value : prescriptionDate);
                 cmdString.Parameters.AddWithValue("@AdministrationRoute", string.IsNullOrEmpty(administrationRoute) ? (object)DBNull.Value : administrationRoute);
                 cmdString.Parameters.AddWithValue("@REFILLCOUNT", refillCount);
@@ -532,7 +537,7 @@ namespace FinalTest1
                 myConn.Close();
             }
         }
-        public void AddRefill(int RXNum)
+        public bool AddRefill(int RXNum)
         {
             try
             {
@@ -543,6 +548,8 @@ namespace FinalTest1
                 cmdString.CommandText = "AddRefill";
                 cmdString.Parameters.AddWithValue("@RXNum", RXNum);
                 cmdString.ExecuteNonQuery();
+
+                return true;
             }
             catch (Exception ex)
             {
@@ -553,7 +560,7 @@ namespace FinalTest1
                 myConn.Close();
             }
         }
-        public void DeleteRefill(int RXNum)
+        public bool SubtractRefill(int RXNum)
         {
             try
             {
@@ -564,6 +571,7 @@ namespace FinalTest1
                 cmdString.CommandText = "DeleteRefill";
                 cmdString.Parameters.AddWithValue("@RXNum", RXNum);
                 cmdString.ExecuteNonQuery();
+                return true;
             }
             catch (Exception ex)
             {

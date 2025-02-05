@@ -32,6 +32,7 @@ namespace FinalTest1
                 hfRXNum.Value = rxNum;
                 txtDosage.Text = row["Dosage"].ToString();
                 txtFrequency.Text = row["Frequency"].ToString();
+                txtMedicationName.Text = row["MedicationName"].ToString();
                 txtPrescriptionDate.Text = row["PrescriptionDate"].ToString();
                 txtAdministrationRoute.Text = row["AdministrationRoute"].ToString();
                 txtRefillCount.Text = row["REFILLCOUNT"].ToString();
@@ -49,11 +50,12 @@ namespace FinalTest1
                 PharmacyDataTier dataTier = new PharmacyDataTier();
                 bool success = dataTier.ModifyPrescription(
                     int.Parse(hfRXNum.Value),
-                    txtDosage.Text,
-                    txtFrequency.Text,
-                    txtPrescriptionDate.Text,
-                    txtAdministrationRoute.Text,
-                    int.Parse(txtRefillCount.Text)
+                    txtDosage.Text.Trim(),
+                    txtFrequency.Text.Trim(),
+                    txtMedicationName.Text.Trim(),
+                    txtPrescriptionDate.Text.Trim(),
+                    txtAdministrationRoute.Text.Trim(),
+                    int.Parse(txtRefillCount.Text.Trim())
                 );
 
                 if (success)

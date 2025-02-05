@@ -1,11 +1,11 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PatientList.aspx.cs" MasterPageFile="Pharmacy.Master" Inherits="FinalTest1.PatientList" %>
 
 
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
     <title>Patient List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-</head>
-<body>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <form id="form1" runat="server" class="container my-5">
         <div class="card shadow-lg p-4">
             <h2 class="mb-4 text-center">Patient List</h2>
