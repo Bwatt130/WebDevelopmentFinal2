@@ -47,8 +47,6 @@
                         ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" ErrorMessage="Invalid email format." ForeColor="Red" />
                 </div>
                 <div class="col-md-6">
-                </div>
-                <div class="col-md-6">
                     <label for="txtStreetName" class="form-label">Street Name</label>
                     <asp:TextBox ID="txtStreetName" runat="server" CssClass="form-control" placeholder="Enter street name"></asp:TextBox>
                 </div>
