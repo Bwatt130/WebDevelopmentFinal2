@@ -23,7 +23,7 @@ namespace FinalTest1
             try
             {
                 PharmacyDataTier dataTier = new PharmacyDataTier();
-                DataSet ds = dataTier.ListPhysicians(); // Fetch physician data
+                DataSet ds = dataTier.ListPhysicians();
 
                 if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
@@ -35,13 +35,11 @@ namespace FinalTest1
                     gvPhysicians.DataSource = null;
                     gvPhysicians.DataBind();
                     lblError.Text = "No physicians found.";
-                    lblError.ForeColor = System.Drawing.Color.Blue;
                 }
             }
             catch (Exception ex)
             {
                 lblError.Text = "Error loading physicians: " + ex.Message;
-                lblError.ForeColor = System.Drawing.Color.Red;
             }
         }
         protected void gvPhysicians_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -61,6 +59,35 @@ namespace FinalTest1
                 gvPhysicians.DataBind();
             }
         }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            PharmacyDataTier dataTier = new PharmacyDataTier();
+            string physicianID = txtPhysicianID.Text.Trim();
+            string firstName = txtFirstName.Text.Trim();
+            string lastName = txtLastName.Text.Trim();
+
+            DataSet ds = dataTier.SearchPhysicians(physicianID, firstName, lastName);
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                gvPhysicians.DataSource = ds.Tables[0];
+                gvPhysicians.DataBind();
+            }
+            else
+            {
+                gvPhysicians.DataSource = null;
+                gvPhysicians.DataBind();
+                lblError.Text = "No matching records found.";
+            }
+        }
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            txtPhysicianID.Text = string.Empty;
+            txtFirstName.Text = string.Empty;
+            txtLastName.Text = string.Empty;
+            LoadPhysicianData();
+        }
+
 
         protected void gvPhysicians_Sorting(object sender, GridViewSortEventArgs e)
         {

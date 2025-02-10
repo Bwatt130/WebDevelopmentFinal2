@@ -7,80 +7,112 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <form id="form1" runat="server" class="container my-5">
-        <div class="card shadow-lg p-4">
-            <h2 class="mb-4 text-center">Update Physician</h2>
+    <div class="card shadow-lg p-4">
+        <h2 class="mb-4 text-center">Physician Registration</h2>
+        <asp:Label ID="lblStatus" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
 
-            <div class="row g-3">            
-                <div class="col-md-6">
-                    <label for="txtPhysicianID" class="form-label">Patient ID</label>
-                    <asp:TextBox ID="txtPhysicianID" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
-                </div>
-                <div class="col-md-6">
-                    <label for="txtFirstName" class="form-label">First Name</label>
-                    <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="col-md-6">
-                    <label for="txtLastName" class="form-label">Last Name</label>
-                    <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="col-md-6">
-                    <label for="txtMiddleInitial" class="form-label">Middle Initial</label>
-                    <asp:TextBox ID="txtMiddleInitial" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="col-md-6">
-                    <label for="txtStreetName" class="form-label">Street Name</label>
-                    <asp:TextBox ID="txtStreetName" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="col-md-6">
-                    <label for="txtCity" class="form-label">City</label>
-                    <asp:TextBox ID="txtCity" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="col-md-6">
-                    <label for="ddlState" class="form-label">State</label>
-                    <asp:DropDownList ID="ddlState" runat="server" CssClass="form-control"/>
-                    <asp:RequiredFieldValidator ID="rfvState" runat="server" ControlToValidate="ddlState"
-                        InitialValue="" ErrorMessage="Please select a state." ForeColor="Red" CssClass="small d-block" />
-                </div>
-                <div class="col-md-6">
-                    <label for="txtZipCode" class="form-label">Zip Code</label>
-                    <asp:TextBox ID="txtZipCode" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="col-md-6">
-                    <label for="txtPhoneNumber" class="form-label">Phone Number</label>
-                    <asp:TextBox ID="txtPhoneNumber" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="col-md-6">
-                    <label for="txtEmail" class="form-label">Email</label>
-                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="col-md-6">
-                    <label for="ddlGender" class="form-label">Gender</label>
-                    <asp:DropDownList ID="ddlGender" runat="server" CssClass="form-control">
-                        <asp:ListItem Value="">Select Gender</asp:ListItem>
-                        <asp:ListItem Value="M">Male</asp:ListItem>
-                        <asp:ListItem Value="F">Female</asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-                <div class="col-md-6">
-                    <label for="txtDOB" class="form-label">Date of Birth</label>
-                    <asp:TextBox ID="txtDOB" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="col-md-6">
-                    <label for="txtSpecialty1" class="form-label">Specialty 1</label>
-                    <asp:TextBox ID="txtSpecialty1" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="col-md-6">
-                    <label for="txtSpecialty2" class="form-label">Specialty 2</label>
-                    <asp:TextBox ID="txtSpecialty2" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label for="txtPhysicianCode" class="form-label">Physician Code</label>
+                <asp:TextBox ID="txtPhysicianCode" runat="server" CssClass="form-control" enabled="false" placeholder="Enter physician code"></asp:TextBox>
             </div>
 
-            <div class="text-center mt-4">
-                <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-primary" OnClick="btnUpdate_Click" />
-                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-secondary" OnClick="btnCancel_Click" />
+            <div class="col-md-6">
+                <label for="txtFirstName" class="form-label">First Name</label>
+                <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control" placeholder="Enter first name"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" ControlToValidate="txtFirstName"
+                    ErrorMessage="First Name is required." ForeColor="Red" CssClass="small d-block" />
             </div>
 
-            <asp:Label ID="lblStatus" runat="server" CssClass="text-danger mt-3 d-block"></asp:Label>
+            <div class="col-md-6">
+                <label for="txtLastName" class="form-label">Last Name</label>
+                <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" placeholder="Enter last name"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvLastName" runat="server" ControlToValidate="txtLastName"
+                    ErrorMessage="Last Name is required." ForeColor="Red" CssClass="small d-block" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="txtMiddleInitial" class="form-label">Middle Initial</label>
+                <asp:TextBox ID="txtMiddleInitial" runat="server" CssClass="form-control" placeholder="Enter middle initial (Optional)"></asp:TextBox>
+            </div>
+
+            <div class="col-md-6">
+                <label for="txtDOB" class="form-label">Date of Birth</label>
+                <asp:TextBox ID="txtDOB" runat="server" CssClass="form-control" placeholder="YYYY-MM-DD"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvDOB" runat="server" ControlToValidate="txtDOB"
+                    ErrorMessage="Date of Birth is required." ForeColor="Red" CssClass="small d-block" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="txtGender" class="form-label">Gender</label>
+                <asp:DropDownList ID="ddlGender" runat="server" CssClass="form-control">
+                    <asp:ListItem Value="">Select Gender</asp:ListItem>
+                    <asp:ListItem Value="M">Male</asp:ListItem>
+                    <asp:ListItem Value="F">Female</asp:ListItem>
+                </asp:DropDownList>
+                <asp:RequiredFieldValidator ID="rfvGender" runat="server" ControlToValidate="ddlGender"
+                    ErrorMessage="Gender is required." ForeColor="Red" CssClass="small d-block" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="txtPhoneNumber" class="form-label">Phone Number</label>
+                <asp:TextBox ID="txtPhoneNumber" runat="server" CssClass="form-control" placeholder="Enter phone number"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvPhoneNumber" runat="server" ControlToValidate="txtPhoneNumber"
+                    ErrorMessage="Phone number is required." ForeColor="Red" CssClass="small d-block" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="txtEmail" class="form-label">Email</label>
+                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Enter email"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail"
+                    ErrorMessage="Email is required." ForeColor="Red" CssClass="small d-block" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="txtStreetName" class="form-label">Street Name</label>
+                <asp:TextBox ID="txtStreetName" runat="server" CssClass="form-control" placeholder="Enter street name"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvStreetName" runat="server" ControlToValidate="txtStreetName"
+                    ErrorMessage="Street Name is required." ForeColor="Red" CssClass="small d-block" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="txtCity" class="form-label">City</label>
+                <asp:TextBox ID="txtCity" runat="server" CssClass="form-control" placeholder="Enter city"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="txtCity"
+                    ErrorMessage="City is required." ForeColor="Red" CssClass="small d-block" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="ddlState" class="form-label">State</label>
+                <asp:DropDownList ID="ddlState" runat="server" CssClass="form-control"/>
+                <asp:RequiredFieldValidator ID="rfvState" runat="server" ControlToValidate="ddlState"
+                    InitialValue="" ErrorMessage="Please select a state." ForeColor="Red" CssClass="small d-block" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="txtZip" class="form-label">Zip Code</label>
+                <asp:TextBox ID="txtZip" runat="server" CssClass="form-control" placeholder="Enter zip code"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvZip" runat="server" ControlToValidate="txtZip"
+                    ErrorMessage="Zip Code is required." ForeColor="Red" CssClass="small d-block" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="txtSpecialty1" class="form-label">Specialty 1</label>
+                <asp:TextBox ID="txtSpecialty1" runat="server" CssClass="form-control" placeholder="Enter first specialty"></asp:TextBox>
+            </div>
+
+            <div class="col-md-6">
+                <label for="txtSpecialty2" class="form-label">Specialty 2</label>
+                <asp:TextBox ID="txtSpecialty2" runat="server" CssClass="form-control" placeholder="Enter second specialty"></asp:TextBox>
+            </div>
         </div>
-    </form>
+
+        <div class="text-center mt-4">
+            <asp:Button ID="btnSaveChanges" runat="server" Text="Save Changes" CssClass="btn btn-primary" OnClick="btnSaveChanges_Click" />
+            <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-secondary" OnClick="btnCancel_Click" CausesValidation="false"/>
+        </div>
+    </div>
+</form>
 </asp:Content>
+
+

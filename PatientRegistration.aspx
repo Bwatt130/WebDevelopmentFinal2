@@ -43,10 +43,9 @@
                 <div class="col-md-6">
                     <label for="txtGender" class="form-label">Gender</label>
                     <asp:DropDownList ID="ddlGender" runat="server" CssClass="form-control">
-                        <asp:ListItem Text="Select Gender" Value="" />
-                        <asp:ListItem Text="Male" Value="Male" />
-                        <asp:ListItem Text="Female" Value="Female" />
-                        <asp:ListItem Text="Other" Value="Other" />
+                        <asp:ListItem Value="">Select Gender</asp:ListItem>
+                        <asp:ListItem Value="M">Male</asp:ListItem>
+                        <asp:ListItem Value="F">Female</asp:ListItem>
                     </asp:DropDownList>
                     <asp:RequiredFieldValidator ID="rfvGender" runat="server" ControlToValidate="ddlGender"
                         InitialValue="" ErrorMessage="Please select a gender." ForeColor="Red" CssClass="small d-block" />
@@ -54,18 +53,27 @@
                 <div class="col-md-6">
                     <label for="txtPhoneNumber" class="form-label">Phone Number</label>
                     <asp:TextBox ID="txtPhoneNumber" runat="server" CssClass="form-control" placeholder="Enter Phone Number"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvPhoneNumber" runat="server" ControlToValidate="txtPhoneNumber"
+                        InitialValue="" ErrorMessage="Please enter a phone number." ForeColor="Red" CssClass="small d-block" />
                 </div>
                 <div class="col-md-6">
                     <label for="txtEmail" class="form-label">Email</label>
                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Enter Email"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail"
+                        InitialValue="" ErrorMessage="Please enter an email." ForeColor="Red" CssClass="small d-block" />
                 </div>
                 <div class="col-md-6">
                     <label for="txtStreetName" class="form-label">Street Name</label>
                     <asp:TextBox ID="txtStreetName" runat="server" CssClass="form-control" placeholder="Enter Street Name"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvAddress" runat="server" 
+                        ControlToValidate="txtStreetName" ErrorMessage="Street name is required." 
+                        CssClass="text-danger" Display="Dynamic" />
                 </div>
                 <div class="col-md-6">
                     <label for="txtCity" class="form-label">City</label>
                     <asp:TextBox ID="txtCity" runat="server" CssClass="form-control" placeholder="Enter City"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="txtCity"
+                        InitialValue="" ErrorMessage="Please enter a city." ForeColor="Red" CssClass="small d-block" />
                 </div>
                 <div class="col-md-6">
                     <label for="ddlState" class="form-label">State</label>
@@ -76,10 +84,12 @@
                 <div class="col-md-6">
                     <label for="txtZip" class="form-label">Zip Code</label>
                     <asp:TextBox ID="txtZip" runat="server" CssClass="form-control" placeholder="Enter Zip Code"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvZip" runat="server" ControlToValidate="txtZip"
+                        InitialValue="" ErrorMessage="Please enter a zip code." ForeColor="Red" CssClass="small d-block" />
                 </div>
                 <div class="col-md-6">
                     <label for="txtPrimaryInsurance" class="form-label">Primary Insurance</label>
-                    <asp:TextBox ID="txtPrimaryInsurance" runat="server" CssClass="form-control" placeholder="Enter Primary Insurance"></asp:TextBox>
+                    <asp:TextBox ID="txtPrimaryInsurance" runat="server" CssClass="form-control" placeholder="Enter Primary Insurance (Optional)"></asp:TextBox>
                 </div>
                 <div class="col-md-6">
                     <label for="txtSecondaryInsurance" class="form-label">Secondary Insurance</label>

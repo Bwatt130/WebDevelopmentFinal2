@@ -2,65 +2,74 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    </asp:Content>
+    <title>Add Prescription</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <form id="form1" runat="server">
-        <div>
-            <h1>Add Prescription</h1>
-            <table>
-                <tr>
-                    <td>Patient ID:</td>
-                    <td>
-                        <asp:DropDownList ID="cbPatientID" runat="server"></asp:DropDownList>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Physician ID:</td>
-                    <td>
-                        <asp:DropDownList ID="cbPhysicianID" runat="server"></asp:DropDownList>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Medication Name:</td>
-                    <td>
-                        <asp:TextBox ID="txtMedName" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Dosage:</td>
-                    <td>
-                        <asp:TextBox ID="txtDosage" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Frequency:</td>
-                    <td>
-                        <asp:TextBox ID="txtFrequency" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Route of Administration:</td>
-                    <td>
-                        <asp:RadioButton ID="rbOral" runat="server" GroupName="Route" Text="Oral"/>
-                        <asp:RadioButton ID="rbTopical" runat="server" GroupName="Route" Text="Topical" />
-                        <asp:RadioButton ID="rbInjection" runat="server" GroupName="Route" Text="Injection" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Refill Amount:</td>
-                    <td>
-                        <asp:TextBox ID="txtRefillAmt" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
-                        <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
-                    </td>
-                </tr>
-            </table>
-            <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
+    <form id="form1" runat="server" class="container my-5">
+        <div class="card shadow-lg p-4">
+            <h2 class="mb-4 text-center">Add Prescription</h2>
+
+            <asp:Label ID="lblMessage" runat="server" CssClass="text-danger d-block mb-3"></asp:Label>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="txtPatientID" class="form-label">Patient Name</label>
+                    <asp:TextBox ID="txtPatientID" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                </div>
+                <div class="col-md-6">
+                    <label for="cbPhysicianID" class="form-label">Physician ID</label>
+                    <asp:DropDownList ID="cbPhysicianID" runat="server" CssClass="form-control">
+                    </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="rfvPhysicianID" runat="server" ControlToValidate="cbPhysicianID"
+                        InitialValue="" ErrorMessage="Physician ID is required." CssClass="text-danger small d-block" />
+                </div>
+                <div class="col-md-6">
+                    <label for="txtMedName" class="form-label">Medication Name</label>
+                    <asp:TextBox ID="txtMedName" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvMedName" runat="server" ControlToValidate="txtMedName"
+                        ErrorMessage="Medication name is required." CssClass="text-danger small d-block" />
+                </div>
+                <div class="col-md-6">
+                    <label for="txtDosage" class="form-label">Dosage</label>
+                    <asp:TextBox ID="txtDosage" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvDosage" runat="server" ControlToValidate="txtDosage"
+                        ErrorMessage="Dosage is required." CssClass="text-danger small d-block" />
+                </div>
+                <div class="col-md-6">
+                    <label for="txtFrequency" class="form-label">Frequency</label>
+                    <asp:TextBox ID="txtFrequency" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvFrequency" runat="server" ControlToValidate="txtFrequency"
+                        ErrorMessage="Frequency is required." CssClass="text-danger small d-block" />
+                </div>
+                <div class="col-md-6">
+                    <label for="txtRoute" class="form-label">Route of Administration</label>
+                    <div class="form-check">
+                        <asp:RadioButton ID="rbOral" runat="server" GroupName="Route" Text="Oral" CssClass="form-check-input me-2" />
+                    </div>
+                    <br />
+                    <div class="form-check">
+                        <asp:RadioButton ID="rbTopical" runat="server" GroupName="Route" Text="Topical" CssClass="form-check-input me-2" />
+                    </div>
+                    <br />
+                    <div class="form-check">
+                        <asp:RadioButton ID="rbInjection" runat="server" GroupName="Route" Text="Injection" CssClass="form-check-input me-2" />
+                    </div>
+                    <asp:CustomValidator ID="cvRoute" runat="server" ErrorMessage="Route of administration is required."
+                        CssClass="text-danger small d-block" OnServerValidate="ValidateRoute"></asp:CustomValidator>
+                </div>
+                <div class="col-md-6">
+                    <label for="txtRefillAmt" class="form-label">Refill Amount</label>
+                    <asp:TextBox ID="txtRefillAmt" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvRefillAmt" runat="server" ControlToValidate="txtRefillAmt"
+                        ErrorMessage="Refill amount is required." CssClass="text-danger small d-block" />
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary me-2" OnClick="btnSubmit_Click" />
+                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-secondary" OnClick="btnCancel_Click" CausesValidation="false"/>
+            </div>
         </div>
     </form>
 </asp:Content>

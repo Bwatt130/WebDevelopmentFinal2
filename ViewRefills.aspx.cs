@@ -36,7 +36,10 @@ namespace FinalTest1
 
                 if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
-                    gvRefills.DataSource = ds;
+                    DataTable dt = ds.Tables[0];
+                    dt.DefaultView.Sort = "REFILLID DESC";
+
+                    gvRefills.DataSource = dt;
                     gvRefills.DataBind();
                 }
                 else
@@ -136,7 +139,15 @@ namespace FinalTest1
 
         protected void btnClose_Click(object sender, EventArgs e)
         {
-            Response.Redirect("PrescriptionList.aspx");
+            string patientID = Request.QueryString["PatientID"];
+            string redirectUrl = "PrescriptionList.aspx";
+
+            if (!string.IsNullOrEmpty(patientID))
+            {
+                redirectUrl += "?PatientID=" + patientID;
+            }
+
+            Response.Redirect(redirectUrl);
         }
     }
 }

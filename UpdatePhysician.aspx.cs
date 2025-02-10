@@ -36,24 +36,30 @@ namespace FinalTest1
             if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {
                 DataRow row = ds.Tables[0].Rows[0];
-                txtPhysicianID.Text = physicianID;
+                txtPhysicianCode.Text = physicianID;
                 txtFirstName.Text = row["FirstName"].ToString();
                 txtLastName.Text = row["LastName"].ToString();
                 txtMiddleInitial.Text = row["MiddleInitial"].ToString();
                 txtStreetName.Text = row["StreetName"].ToString();
                 txtCity.Text = row["City"].ToString();
                 ddlState.SelectedValue = row["State"].ToString();
-                txtZipCode.Text = row["ZipCode"].ToString();
+                txtZip.Text = row["ZipCode"].ToString();
                 txtPhoneNumber.Text = row["PhoneNumber"].ToString();
                 txtEmail.Text = row["Email"].ToString();
                 ddlGender.SelectedValue = row["Gender"].ToString();
-                txtDOB.Text = row["DOB"].ToString();
+
+                DateTime dob;
+                if (DateTime.TryParse(row["DOB"].ToString(), out dob))
+                {
+                    txtDOB.Text = dob.ToString("yyyy-MM-dd");
+                }
+
                 txtSpecialty1.Text = row["Specialty1"].ToString();
                 txtSpecialty2.Text = row["Specialty2"].ToString();
             }
         }
 
-        protected void btnUpdate_Click(object sender, EventArgs e)
+        protected void btnSaveChanges_Click(object sender, EventArgs e)
         {
             try
             {
@@ -81,7 +87,7 @@ namespace FinalTest1
                 string primarySpecialty = "";
                 string secondarySpecialty = "";
 
-                physicianID = txtPhysicianID.Text.Trim();
+                physicianID = txtPhysicianCode.Text.Trim();
                 firstName = txtFirstName.Text.Trim();
                 lastName = txtLastName.Text.Trim();
                 middleInitial = txtMiddleInitial.Text.Trim();
@@ -91,7 +97,7 @@ namespace FinalTest1
                 streetName = txtStreetName.Text.Trim();
                 city = txtCity.Text.Trim();
                 state = ddlState.SelectedValue;
-                zipCode = txtZipCode.Text.Trim();
+                zipCode = txtZip.Text.Trim();
                 primarySpecialty = txtSpecialty1.Text.Trim();
                 secondarySpecialty = txtSpecialty2.Text.Trim();
 

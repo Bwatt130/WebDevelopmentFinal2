@@ -47,7 +47,7 @@ namespace FinalTest1
                 txtZip.Text = row["ZipCode"].ToString();
                 txtPhoneNumber.Text = row["PhoneNumber"].ToString();
                 txtEmail.Text = row["Email"].ToString();
-                txtGender.Text = row["Gender"].ToString();
+                ddlGender.SelectedValue = row["Gender"].ToString();
                 txtDOB.Text = Convert.ToDateTime(row["DOB"]).ToString("yyyy-MM-dd");
                 txtPrimaryInsurance.Text = row["PrimaryInsurance"].ToString();
                 txtSecondaryInsurance.Text = row["SecondaryInsurance"].ToString();
@@ -58,6 +58,78 @@ namespace FinalTest1
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtFirstName.Text))
+            {
+                lblStatus.Text = "First Name is required.";
+                lblStatus.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtLastName.Text))
+            {
+                lblStatus.Text = "Last Name is required.";
+                lblStatus.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtDOB.Text))
+            {
+                lblStatus.Text = "Date of Birth is required.";
+                lblStatus.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
+            if (ddlGender.SelectedValue == "")
+            {
+                lblStatus.Text = "Please select a gender.";
+                lblStatus.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtStreetName.Text))
+            {
+                lblStatus.Text = "Street Name is required.";
+                lblStatus.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtCity.Text))
+            {
+                lblStatus.Text = "City is required.";
+                lblStatus.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
+            if (ddlState.SelectedValue == "")
+            {
+                lblStatus.Text = "Please select a state.";
+                lblStatus.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtZip.Text))
+            {
+                lblStatus.Text = "Zip Code is required.";
+                lblStatus.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                lblStatus.Text = "Email is required.";
+                lblStatus.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtPhoneNumber.Text))
+            {
+                lblStatus.Text = "Phone Number is required.";
+                lblStatus.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
+
+
             try
             {
                 PharmacyDataTier dataTier = new PharmacyDataTier();
@@ -72,7 +144,7 @@ namespace FinalTest1
                     lblStatus.Text = "Invalid date format.";
                     return;
                 }
-                string gender = txtGender.Text;
+                string gender = ddlGender.Text;
                 string phoneNumber = txtPhoneNumber.Text;
                 string email = txtEmail.Text;
                 string streetName = txtStreetName.Text;

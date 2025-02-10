@@ -16,7 +16,7 @@
                     <asp:BoundField DataField="REFILLID" HeaderText="Refill ID" ReadOnly="True" />
                     <asp:BoundField DataField="RXNUM" HeaderText="Prescription ID" ReadOnly="True" />
                     <asp:BoundField DataField="REMAININGCOUNT" HeaderText="Remaining Count" />
-                    <asp:BoundField DataField="DATEFILLED" HeaderText="Date Filled" />
+                    <asp:BoundField DataField="DATEFILLED" HeaderText="Date Filled" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" HtmlEncode="False" />
                 </Columns>
             </asp:GridView>
 

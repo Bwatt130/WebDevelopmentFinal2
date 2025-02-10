@@ -42,6 +42,15 @@ namespace FinalTest1
         protected global::System.Web.UI.WebControls.TextBox txtDosage;
 
         /// <summary>
+        /// rfvDosage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDosage;
+
+        /// <summary>
         /// txtFrequency control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace FinalTest1
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFrequency;
+
+        /// <summary>
+        /// rfvFrequency control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFrequency;
 
         /// <summary>
         /// txtMedicationName control.
@@ -60,6 +78,15 @@ namespace FinalTest1
         protected global::System.Web.UI.WebControls.TextBox txtMedicationName;
 
         /// <summary>
+        /// rfvMedicationName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMedicationName;
+
+        /// <summary>
         /// txtPrescriptionDate control.
         /// </summary>
         /// <remarks>
@@ -69,13 +96,40 @@ namespace FinalTest1
         protected global::System.Web.UI.WebControls.TextBox txtPrescriptionDate;
 
         /// <summary>
-        /// txtAdministrationRoute control.
+        /// rfvPrescriptionDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAdministrationRoute;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPrescriptionDate;
+
+        /// <summary>
+        /// revPrescriptionDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revPrescriptionDate;
+
+        /// <summary>
+        /// ddlAdministrationRoute control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlAdministrationRoute;
+
+        /// <summary>
+        /// rfvAdministrationRoute control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvAdministrationRoute;
 
         /// <summary>
         /// txtRefillCount control.
@@ -85,6 +139,24 @@ namespace FinalTest1
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRefillCount;
+
+        /// <summary>
+        /// rfvRefillCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRefillCount;
+
+        /// <summary>
+        /// rvRefillCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvRefillCount;
 
         /// <summary>
         /// btnSave control.

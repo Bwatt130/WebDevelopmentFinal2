@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,6 +16,10 @@ namespace FinalTest1
         {
             if (!IsPostBack)
             {
+                if (Request.QueryString["PatientID"] != null)
+                {
+                    ViewState["PatientID"] = Request.QueryString["PatientID"];
+                }
                 LoadPrescriptions();
             }
         }
@@ -25,6 +31,16 @@ namespace FinalTest1
                 PharmacyDataTier dataTier = new PharmacyDataTier();
                 DataSet ds = dataTier.ListPrescriptions();
 
+                if (ViewState["PatientID"] != null)
+                {
+                    string patientID = Convert.ToString(ViewState["PatientID"]);
+                    ds = dataTier.ListPrescriptionsByPatient(patientID);
+                } 
+                else
+                {
+                    ds = dataTier.ListPrescriptions();
+                }
+                
                 if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
                     gvPrescriptions.DataSource = ds;
@@ -42,10 +58,51 @@ namespace FinalTest1
                 lblStatus.Text = "An error occurred: " + ex.Message;
             }
         }
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            PharmacyDataTier dataTier = new PharmacyDataTier();
+            DataSet ds;
 
+            string firstName = txtFirstName.Text.Trim();
+            string lastName = txtLastName.Text.Trim();
+            string dob = txtDOB.Text.Trim();
+            DateTime? dobValue = null;
+
+            if (!string.IsNullOrEmpty(dob))
+            {
+                dobValue = DateTime.Parse(dob);
+            }
+
+            if (!string.IsNullOrEmpty(firstName) || !string.IsNullOrEmpty(lastName) || !string.IsNullOrEmpty(dob))
+            {
+                ds = dataTier.ListPrescriptionsByPatientInfo(firstName, lastName, dobValue?.ToString("yyyy-MM-dd"));
+            }
+            else
+            {
+                ds = dataTier.ListPrescriptions();
+            }
+
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                gvPrescriptions.DataSource = ds;
+                gvPrescriptions.DataBind();
+            }
+            else
+            {
+                gvPrescriptions.DataSource = null;
+                gvPrescriptions.DataBind();
+                lblStatus.Text = "No prescriptions found.";
+            }
+        }
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            txtDOB.Text = string.Empty;
+            txtFirstName.Text = string.Empty;
+            txtLastName.Text = string.Empty;
+            LoadPrescriptions();
+        }
         protected void gvPrescriptions_Sorting(object sender, GridViewSortEventArgs e)
         {
-            // Get the prescriptions from the database
             PharmacyDataTier dataTier = new PharmacyDataTier();
             DataSet ds = dataTier.ListPrescriptions();
 
@@ -60,15 +117,88 @@ namespace FinalTest1
 
         protected void gvPrescriptions_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "EditPrescription")
+            if (int.TryParse(e.CommandArgument.ToString(), out int rxNum))
             {
-                string rxNum = e.CommandArgument.ToString();
-                Response.Redirect("EditPrescription.aspx?RXNum=" + rxNum);
-            }
-            else if (e.CommandName == "ViewRefills")
-            {
-                string rxNum = e.CommandArgument.ToString();
-                Response.Redirect("ViewRefills.aspx?RXNum=" + rxNum);
+                if (e.CommandName == "AddRefill")
+                {
+                    PharmacyDataTier dataTier = new PharmacyDataTier();
+                    try
+                    {
+                        bool success = dataTier.AddRefill(rxNum);
+
+                        if (success)
+                        {
+                            lblStatus.Text = "Refill subtracted and logged successfully.";
+                            lblStatus.ForeColor = System.Drawing.Color.Green;
+                            LoadPrescriptions();
+                        }
+                        else
+                        {
+                            lblStatus.Text = "Failed to subtract refill.";
+                            lblStatus.ForeColor = System.Drawing.Color.Red;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        lblStatus.Text = "An error occurred: " + ex.Message;
+                        lblStatus.ForeColor = System.Drawing.Color.Red;
+                    }
+                }
+                else if (e.CommandName == "SubtractRefill")
+                {
+                    PharmacyDataTier dataTier = new PharmacyDataTier();
+                    try
+                    {
+                        bool success = dataTier.SubtractRefill(rxNum);
+
+                        if (success)
+                        {
+                            lblStatus.Text = "Refill subtracted and logged successfully.";
+                            lblStatus.ForeColor = System.Drawing.Color.Green;
+                            LoadPrescriptions();
+                        }
+                        else
+                        {
+                            lblStatus.Text = "Failed to subtract refill.";
+                            lblStatus.ForeColor = System.Drawing.Color.Red;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        lblStatus.Text = "An error occurred: " + ex.Message;
+                        lblStatus.ForeColor = System.Drawing.Color.Red;
+                    }
+                }
+                else if (e.CommandName == "EditPrescription")
+                {
+                    string patientID = ViewState["PatientID"] != null ? ViewState["PatientID"].ToString() : string.Empty;
+                    string redirectUrl = "EditPrescription.aspx?RXNum=" + rxNum;
+
+                    // Include PatientID in the query string if it's available
+                    if (!string.IsNullOrEmpty(patientID))
+                    {
+                        redirectUrl += "&PatientID=" + patientID;
+                    }
+
+                    Response.Redirect(redirectUrl);
+                }
+                else if (e.CommandName == "ViewRefills")
+                {
+                    string patientID = ViewState["PatientID"] != null ? ViewState["PatientID"].ToString() : string.Empty;
+                    string redirectUrl = "ViewRefills.aspx?RXNum=" + rxNum;
+
+                    // Include PatientID in the query string if it's available
+                    if (!string.IsNullOrEmpty(patientID))
+                    {
+                        redirectUrl += "&PatientID=" + patientID;
+                    }
+
+                    Response.Redirect(redirectUrl);
+                }
+                else
+                {
+                    lblStatus.Text = "Invalid prescription number.";
+                }
             }
         }
 

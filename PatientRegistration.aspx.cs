@@ -16,12 +16,21 @@ namespace FinalTest1
         {
             if (!IsPostBack)
             {
+                SetNextPatientID();
                 ddlState.DataSource = StateManager.getStates();
                 ddlState.DataTextField = "FullAndAbbrev";
                 ddlState.DataValueField = "abbreviation";
                 ddlState.SelectedValue = "PA";
                 ddlState.DataBind();
             }
+        }
+
+        private void SetNextPatientID()
+        {
+            PharmacyDataTier dataTier = new PharmacyDataTier();
+            int nextID = dataTier.GetNextPatientID();
+            txtPatientID.Text = nextID.ToString();
+            txtPatientID.Enabled = false;
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -45,7 +54,6 @@ namespace FinalTest1
                 string primaryInsurance = txtPrimaryInsurance.Text.Trim();
                 string secondaryInsurance = txtSecondaryInsurance.Text.Trim();
 
-                // Call Data Tier Method
                 dataTier.PatientRegistration(patientID, firstName, middleInt, lastName, dob, gender, phoneNumber, email, streetName, city, state, zip, primaryInsurance, secondaryInsurance);
 
                 lblStatus.Text = "Patient registered successfully!";

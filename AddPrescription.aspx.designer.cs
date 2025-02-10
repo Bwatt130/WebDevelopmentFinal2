@@ -24,13 +24,22 @@ namespace FinalTest1
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// cbPatientID control.
+        /// lblMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cbPatientID;
+        protected global::System.Web.UI.WebControls.Label lblMessage;
+
+        /// <summary>
+        /// txtPatientID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPatientID;
 
         /// <summary>
         /// cbPhysicianID control.
@@ -42,6 +51,15 @@ namespace FinalTest1
         protected global::System.Web.UI.WebControls.DropDownList cbPhysicianID;
 
         /// <summary>
+        /// rfvPhysicianID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPhysicianID;
+
+        /// <summary>
         /// txtMedName control.
         /// </summary>
         /// <remarks>
@@ -49,6 +67,15 @@ namespace FinalTest1
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMedName;
+
+        /// <summary>
+        /// rfvMedName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMedName;
 
         /// <summary>
         /// txtDosage control.
@@ -60,6 +87,15 @@ namespace FinalTest1
         protected global::System.Web.UI.WebControls.TextBox txtDosage;
 
         /// <summary>
+        /// rfvDosage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDosage;
+
+        /// <summary>
         /// txtFrequency control.
         /// </summary>
         /// <remarks>
@@ -67,6 +103,15 @@ namespace FinalTest1
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFrequency;
+
+        /// <summary>
+        /// rfvFrequency control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFrequency;
 
         /// <summary>
         /// rbOral control.
@@ -96,6 +141,15 @@ namespace FinalTest1
         protected global::System.Web.UI.WebControls.RadioButton rbInjection;
 
         /// <summary>
+        /// cvRoute control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cvRoute;
+
+        /// <summary>
         /// txtRefillAmt control.
         /// </summary>
         /// <remarks>
@@ -103,6 +157,15 @@ namespace FinalTest1
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRefillAmt;
+
+        /// <summary>
+        /// rfvRefillAmt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRefillAmt;
 
         /// <summary>
         /// btnSubmit control.
@@ -121,14 +184,5 @@ namespace FinalTest1
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancel;
-
-        /// <summary>
-        /// lblMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
     }
 }

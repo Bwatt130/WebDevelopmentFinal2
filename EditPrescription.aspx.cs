@@ -34,12 +34,13 @@ namespace FinalTest1
                 txtFrequency.Text = row["Frequency"].ToString();
                 txtMedicationName.Text = row["MedicationName"].ToString();
                 txtPrescriptionDate.Text = row["PrescriptionDate"].ToString();
-                txtAdministrationRoute.Text = row["AdministrationRoute"].ToString();
+                ddlAdministrationRoute.SelectedValue = row["AdministrationRoute"].ToString();
                 txtRefillCount.Text = row["REFILLCOUNT"].ToString();
             }
             else
             {
                 lblStatus.Text = "Prescription not found.";
+                lblStatus.ForeColor = System.Drawing.Color.Red;
             }
         }
 
@@ -54,7 +55,7 @@ namespace FinalTest1
                     txtFrequency.Text.Trim(),
                     txtMedicationName.Text.Trim(),
                     txtPrescriptionDate.Text.Trim(),
-                    txtAdministrationRoute.Text.Trim(),
+                    ddlAdministrationRoute.SelectedValue,
                     int.Parse(txtRefillCount.Text.Trim())
                 );
 
@@ -62,6 +63,7 @@ namespace FinalTest1
                 {
                     lblStatus.Text = "Prescription updated successfully.";
                     lblStatus.ForeColor = System.Drawing.Color.Green;
+                   
                 }
                 else
                 {
@@ -78,7 +80,15 @@ namespace FinalTest1
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("PrescriptionList.aspx");
+            string patientID = Request.QueryString["PatientID"];
+            string redirectUrl = "PrescriptionList.aspx";
+
+            if (!string.IsNullOrEmpty(patientID))
+            {
+                redirectUrl += "?PatientID=" + patientID;
+            }
+
+            Response.Redirect(redirectUrl);
         }
     }
 }

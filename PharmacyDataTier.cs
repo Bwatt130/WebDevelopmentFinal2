@@ -235,6 +235,177 @@ namespace FinalTest1
             }
         }
 
+        public int GetNextPatientID()
+        {
+            int nextID = 1;
+
+            try
+            {
+                myConn.Open();
+                cmdString.Parameters.Clear();
+                cmdString.Connection = myConn;
+                cmdString.CommandType = CommandType.StoredProcedure;
+                cmdString.CommandText = "GetNextPatientID";
+
+                object result = cmdString.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    nextID = Convert.ToInt32(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Error retrieving patient list: " + ex.Message);
+            }
+            finally
+            {
+                myConn.Close();
+            }
+            return nextID;
+        }
+        public int GetNextPhysicianID()
+        {
+            int nextID = 1;
+
+            try
+            {
+                myConn.Open();
+                cmdString.Parameters.Clear();
+                cmdString.Connection = myConn;
+                cmdString.CommandType = CommandType.StoredProcedure;
+                cmdString.CommandText = "GetNextPhysicianID";
+
+                object result = cmdString.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    nextID = Convert.ToInt32(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Error retrieving physician list: " + ex.Message);
+            }
+            finally
+            {
+                myConn.Close();
+            }
+            return nextID;
+        }
+        public DataSet SearchPatients(string patientID, string firstName, string lastName)
+        {
+            try
+            {
+                myConn.Open();
+                cmdString.Parameters.Clear();
+                cmdString.Connection = myConn;
+                cmdString.CommandType = CommandType.StoredProcedure;
+                cmdString.CommandText = "SearchPatients";
+                cmdString.Parameters.AddWithValue("@PatientID", string.IsNullOrEmpty(patientID) ? (object)DBNull.Value : patientID);
+                cmdString.Parameters.AddWithValue("@FirstName", string.IsNullOrEmpty(firstName) ? (object)DBNull.Value : firstName);
+                cmdString.Parameters.AddWithValue("@LastName", string.IsNullOrEmpty(lastName) ? (object)DBNull.Value : lastName);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmdString);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Error retrieving patient list: " + ex.Message);
+            }
+            finally
+            {
+                myConn.Close();
+            }
+        }
+
+        public DataSet SearchPhysicians(string physicianID, string firstName, string lastName)
+        {
+            try
+            {
+                myConn.Open();
+                cmdString.Parameters.Clear();
+                cmdString.Connection = myConn;
+                cmdString.CommandType = CommandType.StoredProcedure;
+                cmdString.CommandText = "SearchPhysicians";
+                cmdString.Parameters.AddWithValue("@PhysicianID", string.IsNullOrEmpty(physicianID) ? (object)DBNull.Value : physicianID);
+                cmdString.Parameters.AddWithValue("@FirstName", string.IsNullOrEmpty(firstName) ? (object)DBNull.Value : firstName);
+                cmdString.Parameters.AddWithValue("@LastName", string.IsNullOrEmpty(lastName) ? (object)DBNull.Value : lastName);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmdString);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Error retrieving physician list: " + ex.Message);
+            }
+            finally
+            {
+                myConn.Close();
+            }
+        }
+
+        public DataSet ListPrescriptionsByPatient(string patientID)
+        {
+            try
+            {
+                myConn.Open();
+                cmdString.Parameters.Clear();
+                cmdString.Connection = myConn;
+                cmdString.CommandType = CommandType.StoredProcedure;
+                cmdString.CommandText = "ListPrescriptionsByPatient";
+                cmdString.Parameters.AddWithValue("@PatientID", patientID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmdString);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Error retrieving physician list: " + ex.Message);
+            }
+            finally
+            {
+                myConn.Close();
+            }
+        }
+
+        public DataSet ListPrescriptionsByPatientInfo(string fname, string lname, string dob)
+        {
+            try
+            {
+                myConn.Open();
+                cmdString.Parameters.Clear();
+                cmdString.Connection = myConn;
+                cmdString.CommandType = CommandType.StoredProcedure;
+                cmdString.CommandText = "ListPrescriptionsByPatientInfo";
+                cmdString.Parameters.AddWithValue("@FirstName", string.IsNullOrEmpty(fname) ? DBNull.Value : (object)fname);
+                cmdString.Parameters.AddWithValue("@LastName", string.IsNullOrEmpty(lname) ? DBNull.Value : (object)lname);
+                cmdString.Parameters.AddWithValue("@DOB", string.IsNullOrEmpty(dob) ? DBNull.Value : (object)dob);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmdString);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Error retrieving physician list: " + ex.Message);
+            }
+            finally
+            {
+                myConn.Close();
+            }
+        }
         public DataSet ListPhysicians()
         {
             try
@@ -318,7 +489,7 @@ namespace FinalTest1
         //    }
         //}
 
-        public void AddPrescription(string patientid, string physicianID, string medicationID, string dosage, string frequency, string AdministrationRoute, int refillcount)
+        public void AddPrescription(string patientid, string physicianID, string medicationName, string dosage, string frequency, string AdministrationRoute, int refillcount)
         {
             try
             {
@@ -329,7 +500,7 @@ namespace FinalTest1
                 cmdString.CommandText = "AddPrescription";
                 cmdString.Parameters.AddWithValue("@PatientID", patientid);
                 cmdString.Parameters.AddWithValue("@PhysicianID", physicianID);
-                cmdString.Parameters.AddWithValue("@MedicationID", medicationID);
+                cmdString.Parameters.AddWithValue("@MedicationName", medicationName);
                 cmdString.Parameters.AddWithValue("@Dosage", dosage);
                 cmdString.Parameters.AddWithValue("@Frequency", frequency);
                 cmdString.Parameters.AddWithValue("@AdministrationRoute", AdministrationRoute);
@@ -340,6 +511,32 @@ namespace FinalTest1
             catch (Exception ex)
             {
                 throw new ArgumentException("Error Adding Prescription: " + ex.Message);
+            }
+            finally
+            {
+                myConn.Close();
+            }
+        }
+
+        public DataSet GetPhysicianIDs()
+        {
+            try
+            {
+                myConn.Open();
+                cmdString.Parameters.Clear();
+                cmdString.CommandType = CommandType.StoredProcedure;
+                cmdString.CommandTimeout = 1500;
+                cmdString.CommandText = "GetPhysicianIDs";
+
+                SqlDataAdapter da = new SqlDataAdapter(cmdString);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Error retrieving physician IDs: " + ex.Message);
             }
             finally
             {

@@ -47,6 +47,34 @@ namespace FinalTest1
             }
         }
 
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string patientID = txtPatientID.Text.Trim();
+            string firstName = txtFirstName.Text.Trim();
+            string lastName = txtLastName.Text.Trim();
+
+            DataSet ds = patientData.SearchPatients(patientID, firstName, lastName);
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                gvPatients.DataSource = ds.Tables[0];
+                gvPatients.DataBind();
+            }
+            else
+            {
+                gvPatients.DataSource = null;
+                gvPatients.DataBind();
+                lblError.Text = "No matching records found.";
+            }
+        }
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            txtPatientID.Text = string.Empty;
+            txtFirstName.Text = string.Empty;
+            txtLastName.Text = string.Empty;
+            LoadPatientData();
+        }
+
+
         protected void gvPatients_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             string patientID = e.CommandArgument.ToString();
@@ -55,6 +83,20 @@ namespace FinalTest1
             {
                 Response.Redirect("UpdatePatient.aspx?PatientID=" + patientID);
             }
+        }
+
+        protected void btnViewPrescriptions_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string patientID = btn.CommandArgument;
+            Response.Redirect("PrescriptionList.aspx?PatientID=" + patientID);
+        }
+
+        protected void btnAddPrescription_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string patientID = btn.CommandArgument;
+            Response.Redirect("AddPrescription.aspx?PatientID=" + patientID);
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)

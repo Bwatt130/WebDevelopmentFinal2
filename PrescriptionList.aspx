@@ -10,18 +10,40 @@
         <div class="card shadow-lg p-4">
             <h2 class="mb-4 text-center">Prescription List</h2>
 
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <label for="txtFirstName" class="form-label">First Name</label>
+                    <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <label for="txtLastName" class="form-label">Last Name</label>
+                    <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <label for="txtDOB" class="form-label">Date of Birth</label>
+                    <asp:TextBox ID="txtDOB" runat="server" CssClass="form-control" />
+                </div>
+            </div>
+
+            <div class="text-center mb-4">
+                <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="btnSearch_Click" />
+                <asp:Button ID="btnClear" runat="server" Text="Clear" CssClass="btn btn-secondary" OnClick="btnClear_Click" CausesValidation="False" />
+            </div>
+
             <asp:GridView ID="gvPrescriptions" runat="server" AutoGenerateColumns="False" DataKeyNames="RXNum"
                 CssClass="table table-bordered" AllowSorting="True" OnSorting="gvPrescriptions_Sorting"
                 OnRowCommand="gvPrescriptions_RowCommand">
                 <Columns>
                     <asp:BoundField DataField="RXNum" HeaderText="RX Number" SortExpression="RXNum" ReadOnly="True" />
                     <asp:BoundField DataField="PatientID" HeaderText="Patient ID" SortExpression="PatientID" />
+                    <asp:BoundField DataField="PatientName" HeaderText="Patient Name" ReadOnly="True" SortExpression="PatientName"/>
                     <asp:BoundField DataField="PhysicianID" HeaderText="Physician ID" SortExpression="PhysicianID" />
                     <asp:BoundField DataField="MedicationName" HeaderText="Medication Name" SortExpression="MedicationName" />
                     <asp:BoundField DataField="Dosage" HeaderText="Dosage" SortExpression="Dosage" />
                     <asp:BoundField DataField="Frequency" HeaderText="Frequency" SortExpression="Frequency" />
                     <asp:BoundField DataField="PrescriptionDate" HeaderText="Date Prescribed" SortExpression="PrescriptionDate" />
                     <asp:BoundField DataField="REFILLCOUNT" HeaderText="Refill Count" SortExpression="REFILLCOUNT" />
+                    <asp:BoundField DataField="RefillsLeft" HeaderText="Refills Left" SortExpression="RefillsLeft" />
 
                     <asp:TemplateField HeaderText="Actions">
                         <ItemTemplate>
@@ -29,12 +51,16 @@
                                 CommandName="EditPrescription" CommandArgument='<%# Eval("RXNum") %>' />
                             <asp:Button ID="btnViewRefills" runat="server" Text="View Refills" CssClass="btn btn-info btn-sm"
                                 CommandName="ViewRefills" CommandArgument='<%# Eval("RXNum") %>' />
+                            <asp:Button ID="btnAddRefill" runat="server" Text="Add Refill" CssClass="btn btn-success btn-sm"
+                                CommandName="AddRefill" CommandArgument='<%# Eval("RXNum") %>' />
+                            <asp:Button ID="btnSubtractRefill" runat="server" Text="Subtract Refill" CssClass="btn btn-danger btn-sm"
+                                CommandName="SubtractRefill" CommandArgument='<%# Eval("RXNum") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
             <div class="text-center mt-4">
-                <asp:Button ID="btnUpdate" runat="server" Text="Add Prescription" CssClass="btn btn-primary" OnClick="btnAddPrescription_Click" />
+<%--                <asp:Button ID="btnUpdate" runat="server" Text="Add Prescription" CssClass="btn btn-primary" OnClick="btnAddPrescription_Click" />--%>
                 <asp:Button ID="btnClose" runat="server" Text="Close" CssClass="btn btn-danger" OnClick="btnClose_Click" />
             </div>
 

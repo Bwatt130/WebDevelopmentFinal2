@@ -9,73 +9,108 @@
     <form id="form1" runat="server" class="container my-5">
         <div class="card shadow-lg p-4">
             <h2 class="mb-4 text-center">Physician Registration</h2>
+            <asp:Label ID="lblStatus" runat="server" CssClass="text-danger mb-3 d-block"></asp:Label>
+
             <div class="row g-3">
                 <div class="col-md-6">
                     <label for="txtPhysicianCode" class="form-label">Physician Code</label>
                     <asp:TextBox ID="txtPhysicianCode" runat="server" CssClass="form-control" placeholder="Enter physician code"></asp:TextBox>
                 </div>
+
                 <div class="col-md-6">
                     <label for="txtFirstName" class="form-label">First Name</label>
                     <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control" placeholder="Enter first name"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" ControlToValidate="txtFirstName"
+                        ErrorMessage="First Name is required." ForeColor="Red" CssClass="small d-block" />
                 </div>
+
                 <div class="col-md-6">
                     <label for="txtLastName" class="form-label">Last Name</label>
                     <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" placeholder="Enter last name"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvLastName" runat="server" ControlToValidate="txtLastName"
+                        ErrorMessage="Last Name is required." ForeColor="Red" CssClass="small d-block" />
                 </div>
+
                 <div class="col-md-6">
                     <label for="txtMiddleInitial" class="form-label">Middle Initial</label>
-                    <asp:TextBox ID="txtMiddleInitial" runat="server" CssClass="form-control" placeholder="Enter middle initial"></asp:TextBox>
+                    <asp:TextBox ID="txtMiddleInitial" runat="server" CssClass="form-control" placeholder="Enter middle initial (Optional)"></asp:TextBox>
                 </div>
+
                 <div class="col-md-6">
                     <label for="txtDOB" class="form-label">Date of Birth</label>
                     <asp:TextBox ID="txtDOB" runat="server" CssClass="form-control" placeholder="YYYY-MM-DD"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvDOB" runat="server" ControlToValidate="txtDOB"
+                        ErrorMessage="Date of Birth is required." ForeColor="Red" CssClass="small d-block" />
                 </div>
+
                 <div class="col-md-6">
                     <label for="txtGender" class="form-label">Gender</label>
-                    <asp:TextBox ID="txtGender" runat="server" CssClass="form-control" placeholder="Enter gender"></asp:TextBox>
+                    <asp:DropDownList ID="ddlGender" runat="server" CssClass="form-control">
+                        <asp:ListItem Value="">Select Gender</asp:ListItem>
+                        <asp:ListItem Value="M">Male</asp:ListItem>
+                        <asp:ListItem Value="F">Female</asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="rfvGender" runat="server" ControlToValidate="ddlGender"
+                        ErrorMessage="Gender is required." ForeColor="Red" CssClass="small d-block" />
                 </div>
+
                 <div class="col-md-6">
                     <label for="txtPhoneNumber" class="form-label">Phone Number</label>
                     <asp:TextBox ID="txtPhoneNumber" runat="server" CssClass="form-control" placeholder="Enter phone number"></asp:TextBox>
-                    <asp:RegularExpressionValidator ID="revPhoneNumber" runat="server" ControlToValidate="txtPhoneNumber" 
-                        ValidationExpression="^\(\d{3}\)\s\d{3}-\d{4}$" ErrorMessage="Phone number must be in the format (123) 456-7890." ForeColor="Red" />
+                    <asp:RequiredFieldValidator ID="rfvPhoneNumber" runat="server" ControlToValidate="txtPhoneNumber"
+                        ErrorMessage="Phone number is required." ForeColor="Red" CssClass="small d-block" />
                 </div>
+
                 <div class="col-md-6">
                     <label for="txtEmail" class="form-label">Email</label>
                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Enter email"></asp:TextBox>
-                    <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" 
-                        ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" ErrorMessage="Invalid email format." ForeColor="Red" />
+                    <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail"
+                        ErrorMessage="Email is required." ForeColor="Red" CssClass="small d-block" />
                 </div>
+
                 <div class="col-md-6">
                     <label for="txtStreetName" class="form-label">Street Name</label>
                     <asp:TextBox ID="txtStreetName" runat="server" CssClass="form-control" placeholder="Enter street name"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvStreetName" runat="server" ControlToValidate="txtStreetName"
+                        ErrorMessage="Street Name is required." ForeColor="Red" CssClass="small d-block" />
                 </div>
+
                 <div class="col-md-6">
                     <label for="txtCity" class="form-label">City</label>
                     <asp:TextBox ID="txtCity" runat="server" CssClass="form-control" placeholder="Enter city"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="txtCity"
+                        ErrorMessage="City is required." ForeColor="Red" CssClass="small d-block" />
                 </div>
+
                 <div class="col-md-6">
-                    <label for="txtState" class="form-label">State</label>
-                    <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
+                    <label for="ddlState" class="form-label">State</label>
+                    <asp:DropDownList ID="ddlState" runat="server" CssClass="form-control"/>
+                    <asp:RequiredFieldValidator ID="rfvState" runat="server" ControlToValidate="ddlState"
+                        InitialValue="" ErrorMessage="Please select a state." ForeColor="Red" CssClass="small d-block" />
                 </div>
+
                 <div class="col-md-6">
                     <label for="txtZip" class="form-label">Zip Code</label>
                     <asp:TextBox ID="txtZip" runat="server" CssClass="form-control" placeholder="Enter zip code"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvZip" runat="server" ControlToValidate="txtZip"
+                        ErrorMessage="Zip Code is required." ForeColor="Red" CssClass="small d-block" />
                 </div>
+
                 <div class="col-md-6">
                     <label for="txtSpecialty1" class="form-label">Specialty 1</label>
                     <asp:TextBox ID="txtSpecialty1" runat="server" CssClass="form-control" placeholder="Enter first specialty"></asp:TextBox>
                 </div>
+
                 <div class="col-md-6">
                     <label for="txtSpecialty2" class="form-label">Specialty 2</label>
                     <asp:TextBox ID="txtSpecialty2" runat="server" CssClass="form-control" placeholder="Enter second specialty"></asp:TextBox>
                 </div>
             </div>
+
             <div class="text-center mt-4">
                 <asp:Button ID="btnSubmit" runat="server" Text="Register Physician" CssClass="btn btn-primary" OnClick="btnSubmit_Click" />
-                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-secondary" OnClick="btnCancel_Click" />
+                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-secondary" OnClick="btnCancel_Click" CausesValidation="false"/>
             </div>
-            <asp:Label ID="lblStatus" runat="server" CssClass="text-danger mt-3 d-block"></asp:Label>
         </div>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
