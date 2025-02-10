@@ -55,12 +55,20 @@
                     <asp:TextBox ID="txtPhoneNumber" runat="server" CssClass="form-control" placeholder="Enter Phone Number"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvPhoneNumber" runat="server" ControlToValidate="txtPhoneNumber"
                         InitialValue="" ErrorMessage="Please enter a phone number." ForeColor="Red" CssClass="small d-block" />
+                    <asp:RegularExpressionValidator ID="revPhoneNumber" runat="server" ControlToValidate="txtPhoneNumber"
+                        ValidationExpression="^\d{3}-\d{3}-\d{4}$"
+                        ErrorMessage="Phone number must be in XXX-XXX-XXXX format." ForeColor="Blue"
+                        CssClass="small d-block" Display="Dynamic"  EnableClientScript="true"/>
                 </div>
                 <div class="col-md-6">
                     <label for="txtEmail" class="form-label">Email</label>
                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Enter Email"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail"
                         InitialValue="" ErrorMessage="Please enter an email." ForeColor="Red" CssClass="small d-block" />
+                    <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail"
+                        ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                        ErrorMessage="Enter a valid email address (e.g., user@example.com)." ForeColor="Blue"
+                        CssClass="small d-block" Display="Dynamic"  EnableClientScript="true"/>
                 </div>
                 <div class="col-md-6">
                     <label for="txtStreetName" class="form-label">Street Name</label>

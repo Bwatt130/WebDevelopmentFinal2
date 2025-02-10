@@ -104,12 +104,20 @@ namespace FinalTest1
         protected void gvPrescriptions_Sorting(object sender, GridViewSortEventArgs e)
         {
             PharmacyDataTier dataTier = new PharmacyDataTier();
-            DataSet ds = dataTier.ListPrescriptions();
 
-            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            string sortExpression = e.SortExpression;
+            string sortDirection = (ViewState["SortDirection"] as string == "ASC") ? "DESC" : "ASC";
+            ViewState["SortDirection"] = sortDirection;
+
+            string patientID = Request.QueryString["PatientID"];
+            string firstName = txtFirstName.Text.Trim();
+            string lastName = txtLastName.Text.Trim();
+            string dob = txtDOB.Text.Trim();
+
+            DataTable dt = dataTier.GetPrescriptions(patientID, firstName, lastName, dob, sortExpression, sortDirection);
+
+            if (dt != null)
             {
-                DataTable dt = ds.Tables[0];
-                dt.DefaultView.Sort = e.SortExpression;
                 gvPrescriptions.DataSource = dt;
                 gvPrescriptions.DataBind();
             }

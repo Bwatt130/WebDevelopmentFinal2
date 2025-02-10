@@ -55,6 +55,7 @@
                     <div class="form-check">
                         <asp:RadioButton ID="rbInjection" runat="server" GroupName="Route" Text="Injection" CssClass="form-check-input me-2" />
                     </div>
+                    <br />
                     <asp:CustomValidator ID="cvRoute" runat="server" ErrorMessage="Route of administration is required."
                         CssClass="text-danger small d-block" OnServerValidate="ValidateRoute"></asp:CustomValidator>
                 </div>

@@ -3,6 +3,7 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.UI.WebControls;
 
 namespace FinalTest1
 {
@@ -443,7 +444,7 @@ namespace FinalTest1
                 cmdString.CommandType = CommandType.StoredProcedure;
                 cmdString.CommandTimeout = 1500;
                 cmdString.CommandText = "ListPrescriptions";
-                SqlDataAdapter da = new SqlDataAdapter(cmdString);
+               SqlDataAdapter da = new SqlDataAdapter(cmdString);
                 DataSet ds = new DataSet();
                 da.Fill(ds);
 
@@ -676,6 +677,38 @@ namespace FinalTest1
             catch (Exception ex)
             {
                 throw new ArgumentException("Error retrieving prescription: " + ex.Message);
+            }
+            finally
+            {
+                myConn.Close();
+            }
+        }
+
+        public DataTable GetPrescriptions(string patientID, string firstName, string lastName, string dob, string sortColumn, string sortDirection)
+        {
+            try
+            {
+                myConn.Open();
+                cmdString.Parameters.Clear();
+                cmdString.CommandType = CommandType.StoredProcedure;
+                cmdString.CommandTimeout = 1500;
+                cmdString.CommandText = "GetPrescriptions";
+
+                cmdString.Parameters.AddWithValue("@PatientID", string.IsNullOrEmpty(patientID) ? (object)DBNull.Value : patientID);
+                cmdString.Parameters.AddWithValue("@FirstName", string.IsNullOrEmpty(firstName) ? (object)DBNull.Value : firstName);
+                cmdString.Parameters.AddWithValue("@LastName", string.IsNullOrEmpty(lastName) ? (object)DBNull.Value : lastName);
+                cmdString.Parameters.AddWithValue("@DOB", string.IsNullOrEmpty(dob) ? (object)DBNull.Value : dob);
+                cmdString.Parameters.AddWithValue("@SortColumn", sortColumn);
+                cmdString.Parameters.AddWithValue("@SortDirection", sortDirection);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmdString);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(ex.Message);
             }
             finally
             {

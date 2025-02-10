@@ -56,6 +56,7 @@ namespace FinalTest1
 
                 dataTier.PatientRegistration(patientID, firstName, middleInt, lastName, dob, gender, phoneNumber, email, streetName, city, state, zip, primaryInsurance, secondaryInsurance);
 
+                ClearFields();
                 lblStatus.Text = "Patient registered successfully!";
                 lblStatus.ForeColor = System.Drawing.Color.Green;
             }
@@ -64,6 +65,40 @@ namespace FinalTest1
                 lblStatus.Text = "An error occurred: " + ex.Message;
                 lblStatus.ForeColor = System.Drawing.Color.Red;
             }
+        }
+
+        private void ClearFields()
+        {
+            txtPatientID.Text = string.Empty;
+            txtFirstName.Text = string.Empty;
+            txtLastName.Text = string.Empty;
+            txtMiddleInt.Text = string.Empty;
+            txtDOB.Text = string.Empty;
+            ddlGender.Text = string.Empty;
+            txtPhoneNumber.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtStreetName.Text = string.Empty;
+            txtCity.Text = string.Empty;
+            ddlState.SelectedIndex = 33;
+            txtZip.Text = string.Empty;
+            txtPrimaryInsurance.Text = string.Empty;
+            txtSecondaryInsurance.Text = string.Empty;
+            lblStatus.Text = string.Empty;
+            txtPatientID.Enabled = false;
+            txtFirstName.Enabled = false;
+            txtLastName.Enabled = false;
+            txtMiddleInt.Enabled = false;
+            txtDOB.Enabled = false;
+            ddlGender.Enabled = false;
+            txtPhoneNumber.Enabled = false;
+            txtEmail.Enabled = false;
+            txtStreetName.Enabled = false;
+            txtCity.Enabled = false;
+            ddlState.Enabled = false;
+            txtZip.Enabled = false;
+            txtPrimaryInsurance.Enabled = false;
+            txtSecondaryInsurance.Enabled = false;
+
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
