@@ -110,7 +110,7 @@ namespace FinalTest1
 
         protected void gvPatients_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            gvPatients.PageIndex = e.NewPageIndex; // Set the new page index
+            gvPatients.PageIndex = e.NewPageIndex;
             BindPatientsGrid();
         }
         private void BindPatientsGrid()

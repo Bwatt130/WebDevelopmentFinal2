@@ -182,7 +182,6 @@ namespace FinalTest1
                     string patientID = ViewState["PatientID"] != null ? ViewState["PatientID"].ToString() : string.Empty;
                     string redirectUrl = "EditPrescription.aspx?RXNum=" + rxNum;
 
-                    // Include PatientID in the query string if it's available
                     if (!string.IsNullOrEmpty(patientID))
                     {
                         redirectUrl += "&PatientID=" + patientID;
@@ -195,7 +194,6 @@ namespace FinalTest1
                     string patientID = ViewState["PatientID"] != null ? ViewState["PatientID"].ToString() : string.Empty;
                     string redirectUrl = "ViewRefills.aspx?RXNum=" + rxNum;
 
-                    // Include PatientID in the query string if it's available
                     if (!string.IsNullOrEmpty(patientID))
                     {
                         redirectUrl += "&PatientID=" + patientID;

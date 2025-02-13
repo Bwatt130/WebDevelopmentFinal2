@@ -111,13 +111,6 @@ namespace FinalTest1
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtSpecialty2.Text))
-            {
-                lblStatus.Text = "Phone Number is required.";
-                lblStatus.ForeColor = System.Drawing.Color.Red;
-                return;
-            }
-
             string physicianCode = txtPhysicianCode.Text.Trim();
             string firstName = txtFirstName.Text.Trim();
             string lastName = txtLastName.Text.Trim();

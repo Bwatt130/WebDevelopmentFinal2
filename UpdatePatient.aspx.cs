@@ -33,7 +33,7 @@ namespace FinalTest1
         private void LoadPatientData(string patientID)
         {
             PharmacyDataTier dataTier = new PharmacyDataTier();
-            DataSet ds = dataTier.GetPatientByID(patientID); // A method to fetch patient details
+            DataSet ds = dataTier.GetPatientByID(patientID);
 
             if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {

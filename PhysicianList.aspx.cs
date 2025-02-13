@@ -44,7 +44,7 @@ namespace FinalTest1
         }
         protected void gvPhysicians_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            gvPhysicians.PageIndex = e.NewPageIndex; // Set the new page index
+            gvPhysicians.PageIndex = e.NewPageIndex;
             BindPhysicianGrid();
         }
 
