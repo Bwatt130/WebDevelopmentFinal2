@@ -70,7 +70,6 @@
     <Content Include="ErrorPages\404.html" />
     <Content Include="About.aspx" />
     <Content Include="EditPrescription.aspx" />
-    <Content Include="ErrorPages\Oops.html" />
     <Content Include="FinalMainPage.aspx" />
     <Content Include="PatientList.aspx" />
     <Content Include="PatientRegistration.aspx" />
