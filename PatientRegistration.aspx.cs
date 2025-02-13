@@ -58,12 +58,13 @@ namespace FinalTest1
 
                 ClearFields();
                 lblStatus.Text = "Patient registered successfully!";
-                lblStatus.ForeColor = System.Drawing.Color.Green;
+                
+                lblStatus.Visible = true;
             }
             catch (Exception ex)
             {
                 lblStatus.Text = "An error occurred: " + ex.Message;
-                lblStatus.ForeColor = System.Drawing.Color.Red;
+                
             }
         }
 

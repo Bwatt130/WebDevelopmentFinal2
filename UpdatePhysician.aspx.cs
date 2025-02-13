@@ -16,12 +16,14 @@ namespace FinalTest1
         {
             if (!IsPostBack)
             {
+                txtPhysicianCode.Enabled = false;
                 ddlState.DataSource = StateManager.getStates();
                 ddlState.DataTextField = "FullAndAbbrev";
                 ddlState.DataValueField = "abbreviation";
                 ddlState.SelectedValue = "PA";
                 ddlState.DataBind();
                 string physicianID = Request.QueryString["PhysicianID"];
+                rvDOB.MaximumValue = DateTime.Now.ToString("yyyy/MM/dd");
                 if (!string.IsNullOrEmpty(physicianID))
                 {
                     LoadPhysicianData(physicianID);
@@ -61,6 +63,7 @@ namespace FinalTest1
 
         protected void btnSaveChanges_Click(object sender, EventArgs e)
         {
+            lblStatus.Visible = false;
             try
             {
                 PharmacyDataTier dataTier = new PharmacyDataTier();
@@ -70,10 +73,11 @@ namespace FinalTest1
                 string middleInitial = "";
 
                 DateTime dob;
-                if (!DateTime.TryParse(txtDOB.Text, out dob))
+                if (!DateTime.TryParse(txtDOB.Text, out dob) || dob < new DateTime(1753, 1, 1) || dob > DateTime.Today)
                 {
-                    lblStatus.Text = "Invalid date format.";
-                    lblStatus.ForeColor = System.Drawing.Color.Red;
+                    lblStatus.Text = "Invalid date. Date must be between 1753/01/01 and today.";
+                    
+                    lblStatus.Visible = true;
                     return;
                 }
 
@@ -102,26 +106,61 @@ namespace FinalTest1
                 secondarySpecialty = txtSpecialty2.Text.Trim();
 
                 bool success = dataTier.UpdatePhysician(physicianID, firstName, lastName, middleInitial, dob, gender, phoneNumber, email, streetName, city, state, zipCode, primarySpecialty, secondarySpecialty);
-
+                
                 if (success)
                 {
+                    ClearFields();
                     lblStatus.Text = "Physician information updated successfully.";
-                    lblStatus.ForeColor = System.Drawing.Color.Green;
+                    
+                    lblStatus.Visible = true;
                 }
                 else
                 {
                     lblStatus.Text = "Failed to update physician information.";
-                    lblStatus.ForeColor = System.Drawing.Color.Red;
+                    
+                    lblStatus.Visible = true;
                 }
             }
             catch (Exception ex)
             {
                 lblStatus.Text = "An error occurred: " + ex.Message;
-                lblStatus.ForeColor = System.Drawing.Color.Red;
+                
             }
         }
 
+        private void ClearFields()
+        {
+            txtPhysicianCode.Text = string.Empty;
+            txtFirstName.Text = string.Empty;
+            txtLastName.Text = string.Empty;
+            txtMiddleInitial.Text = string.Empty;
+            txtDOB.Text = string.Empty;
+            ddlGender.Text = string.Empty;
+            txtPhoneNumber.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtStreetName.Text = string.Empty;
+            txtCity.Text = string.Empty;
+            ddlState.SelectedIndex = 33;
+            txtZip.Text = string.Empty;
+            txtSpecialty1.Text = string.Empty;
+            txtSpecialty2.Text = string.Empty;
+            lblStatus.Text = string.Empty;
+            txtPhysicianCode.Enabled = false;
+            txtFirstName.Enabled = false;
+            txtLastName.Enabled = false;
+            txtMiddleInitial.Enabled = false;
+            txtDOB.Enabled = false;
+            ddlGender.Enabled = false;
+            txtPhoneNumber.Enabled = false;
+            txtEmail.Enabled = false;
+            txtStreetName.Enabled = false;
+            txtCity.Enabled = false;
+            ddlState.Enabled = false;
+            txtZip.Enabled = false;
+            txtSpecialty1.Enabled = false;
+            txtSpecialty2.Enabled = false;
 
+        }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("PhysicianList.aspx");

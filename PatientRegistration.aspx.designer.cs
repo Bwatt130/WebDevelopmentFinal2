@@ -69,6 +69,15 @@ namespace FinalTest1
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFirstName;
 
         /// <summary>
+        /// revFirstName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revFirstName;
+
+        /// <summary>
         /// txtLastName control.
         /// </summary>
         /// <remarks>
@@ -87,6 +96,15 @@ namespace FinalTest1
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLastName;
 
         /// <summary>
+        /// revLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revLastName;
+
+        /// <summary>
         /// txtMiddleInt control.
         /// </summary>
         /// <remarks>
@@ -94,6 +112,15 @@ namespace FinalTest1
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMiddleInt;
+
+        /// <summary>
+        /// revMiddleInt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revMiddleInt;
 
         /// <summary>
         /// txtDOB control.
@@ -112,6 +139,15 @@ namespace FinalTest1
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDOB;
+
+        /// <summary>
+        /// revDOB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revDOB;
 
         /// <summary>
         /// ddlGender control.
@@ -195,13 +231,22 @@ namespace FinalTest1
         protected global::System.Web.UI.WebControls.TextBox txtStreetName;
 
         /// <summary>
-        /// rfvAddress control.
+        /// rfvStreetName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvAddress;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvStreetName;
+
+        /// <summary>
+        /// revStreetName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revStreetName;
 
         /// <summary>
         /// txtCity control.
@@ -220,6 +265,15 @@ namespace FinalTest1
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCity;
+
+        /// <summary>
+        /// revCity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revCity;
 
         /// <summary>
         /// ddlState control.
@@ -258,6 +312,15 @@ namespace FinalTest1
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvZip;
 
         /// <summary>
+        /// revZipCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revZipCode;
+
+        /// <summary>
         /// txtPrimaryInsurance control.
         /// </summary>
         /// <remarks>
@@ -267,6 +330,15 @@ namespace FinalTest1
         protected global::System.Web.UI.WebControls.TextBox txtPrimaryInsurance;
 
         /// <summary>
+        /// revPrimaryInsurance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revPrimaryInsurance;
+
+        /// <summary>
         /// txtSecondaryInsurance control.
         /// </summary>
         /// <remarks>
@@ -274,6 +346,15 @@ namespace FinalTest1
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSecondaryInsurance;
+
+        /// <summary>
+        /// revSecondaryInsurance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revSecondaryInsurance;
 
         /// <summary>
         /// btnSubmit control.

@@ -43,7 +43,7 @@
                         ErrorMessage="Frequency is required." CssClass="text-danger small d-block" />
                 </div>
                 <div class="col-md-6">
-                    <label for="txtRoute" class="form-label">Route of Administration</label>
+                    <label for="txtRoute" class="form-label">Route of Administration (Required)</label>
                     <div class="form-check">
                         <asp:RadioButton ID="rbOral" runat="server" GroupName="Route" Text="Oral" CssClass="form-check-input me-2" />
                     </div>

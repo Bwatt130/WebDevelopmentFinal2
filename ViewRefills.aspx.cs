@@ -22,7 +22,7 @@ namespace FinalTest1
                 else
                 {
                     lblStatus.Text = "No prescription selected?";
-                    lblStatus.ForeColor = System.Drawing.Color.Red;
+                    
                 }
             }
         }
@@ -69,25 +69,25 @@ namespace FinalTest1
                     if (success)
                     {
                         lblStatus.Text = "Refill added successfully.";
-                        lblStatus.ForeColor = System.Drawing.Color.Green;
-                        LoadRefills(rxNum); // Refresh the list
+                        
+                        LoadRefills(rxNum);
                     }
                     else
                     {
                         lblStatus.Text = "Failed to add refill.";
-                        lblStatus.ForeColor = System.Drawing.Color.Red;
+                        
                     }
                 }
                 catch (Exception ex)
                 {
                     lblStatus.Text = "An error occurred: " + ex.Message;
-                    lblStatus.ForeColor = System.Drawing.Color.Red;
+                    
                 }
             }
             else
             {
                 lblStatus.Text = "No prescription selected.";
-                lblStatus.ForeColor = System.Drawing.Color.Red;
+                
             }
         }
 
@@ -115,25 +115,25 @@ namespace FinalTest1
                     if (success)
                     {
                         lblStatus.Text = "Refill subtracted and logged successfully.";
-                        lblStatus.ForeColor = System.Drawing.Color.Green;
+                        
                         LoadRefills(rxNum);
                     }
                     else
                     {
                         lblStatus.Text = "Failed to subtract refill.";
-                        lblStatus.ForeColor = System.Drawing.Color.Red;
+                        
                     }
                 }
                 catch (Exception ex)
                 {
                     lblStatus.Text = "An error occurred: " + ex.Message;
-                    lblStatus.ForeColor = System.Drawing.Color.Red;
+                    
                 }
             }
             else
             {
                 lblStatus.Text = "No prescription selected.";
-                lblStatus.ForeColor = System.Drawing.Color.Red;
+                
             }
         }
 

@@ -12,8 +12,10 @@ namespace FinalTest1
         static String connString = ConfigurationManager.ConnectionStrings["ConnString"].ConnectionString;
         static SqlConnection myConn = new SqlConnection(connString);
         static System.Data.SqlClient.SqlCommand cmdString = new System.Data.SqlClient.SqlCommand();
-
-        public bool UpdatePatient(string patientID, string firstName, string MiddleInitial, string lastName, DateTime dob, string gender, string phoneNumber, string email, string streetName, string city, string state, string zip, string primaryInsurance, string secondaryInsurance)
+        public bool UpdatePatient(string patientID, string firstName, string MiddleInitial, 
+            string lastName, DateTime dob, string gender, string phoneNumber, string email, 
+            string streetName, string city, string state, string zip, 
+            string primaryInsurance, string secondaryInsurance)
         {
             try
             {
@@ -49,7 +51,6 @@ namespace FinalTest1
                 myConn.Close();
             }
         }
-
         public bool UpdatePhysician(string physicianID, string firstName, string lastName,
             string middleInitial, DateTime? dob, string gender, string phoneNumber,
             string email, string streetName, string city, string state, string zipCode,
@@ -90,8 +91,10 @@ namespace FinalTest1
                 myConn.Close();
             }
         }
-
-        public void PatientRegistration(string patientID, string firstName, string middleInt, string lastName, string dob, string gender, string phoneNumber, string email, string streetName, string city, string state, string zip, string primaryInsurance, string secondaryInsurance)
+        public void PatientRegistration(string patientID, string firstName, string middleInt, 
+            string lastName, string dob, string gender, string phoneNumber, string email, 
+            string streetName, string city, string state, string zip, 
+            string primaryInsurance, string secondaryInsurance)
         {
             try
             {
@@ -133,8 +136,9 @@ namespace FinalTest1
                 myConn.Close();
             }
         }
-
-        public void PhysicianRegistration(string PhysicianID, string firstName, string MiddleInitial, string lastName, string dob, string gender, string phoneNumber, string email, string streetName, string city, string state, string zip, string Specialty1, string Specialty2)
+        public void PhysicianRegistration(string PhysicianID, string firstName, string MiddleInitial, 
+            string lastName, string dob, string gender, string phoneNumber, string email, 
+            string streetName, string city, string state, string zip, string Specialty1, string Specialty2)
         {
 
             {
@@ -178,8 +182,9 @@ namespace FinalTest1
                 }
             }
         }
-
-        public bool ModifyPrescription(int rxNum, string dosage, string frequency, string medicationName, string prescriptionDate, string administrationRoute, int refillCount)
+        public bool ModifyPrescription(int rxNum, string dosage, string frequency, 
+            string medicationName, string prescriptionDate, 
+            string administrationRoute, int refillCount)
         {
             try
             {
@@ -208,7 +213,6 @@ namespace FinalTest1
                 myConn.Close();
             }
         }
-
         public DataSet ListPatients()
         {
             try
@@ -235,7 +239,6 @@ namespace FinalTest1
                 myConn.Close();
             }
         }
-
         public int GetNextPatientID()
         {
             int nextID = 1;
@@ -322,7 +325,6 @@ namespace FinalTest1
                 myConn.Close();
             }
         }
-
         public DataSet SearchPhysicians(string physicianID, string firstName, string lastName)
         {
             try
@@ -351,7 +353,6 @@ namespace FinalTest1
                 myConn.Close();
             }
         }
-
         public DataSet ListPrescriptionsByPatient(string patientID)
         {
             try
@@ -378,7 +379,6 @@ namespace FinalTest1
                 myConn.Close();
             }
         }
-
         public DataSet ListPrescriptionsByPatientInfo(string fname, string lname, string dob)
         {
             try
@@ -432,7 +432,6 @@ namespace FinalTest1
                 myConn.Close();
             }
         }
-
         public DataSet ListPrescriptions()
         {
             try
@@ -459,38 +458,8 @@ namespace FinalTest1
                 myConn.Close();
             }
         }
-
-        //public DataSet GetPatients(string patientID, string lastName, string dob)
-        //{
-        //    try
-        //    {
-        //        myConn.Open();
-        //        cmdString.Parameters.Clear();
-        //        cmdString.CommandType = CommandType.StoredProcedure;
-        //        cmdString.CommandTimeout = 1500;
-        //        cmdString.CommandText = "GetPatients";
-        //        cmdString.Parameters.Add("@PatientID", SqlDbType.VarChar, 50).Value = patientID;
-        //        cmdString.Parameters.Add("@LastName", SqlDbType.VarChar, 50).Value = lastName;
-        //        cmdString.Parameters.Add("@DOB", SqlDbType.VarChar, 12).Value = dob;
-
-        //        SqlDataAdapter da = new SqlDataAdapter(cmdString);
-        //        DataSet ds = new DataSet();
-        //        da.Fill(ds);
-
-        //        return ds;
-        //    }
-
-        //    catch (Exception ex)
-        //    {
-        //        throw new ArgumentException("Error retrieving patient data: " + ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        myConn.Close();
-        //    }
-        //}
-
-        public void AddPrescription(string patientid, string physicianID, string medicationName, string dosage, string frequency, string AdministrationRoute, int refillcount)
+        public void AddPrescription(string patientid, string physicianID, string medicationName, 
+            string dosage, string frequency, string AdministrationRoute, int refillcount)
         {
             try
             {
@@ -518,7 +487,6 @@ namespace FinalTest1
                 myConn.Close();
             }
         }
-
         public DataSet GetPhysicianIDs()
         {
             try
@@ -544,33 +512,6 @@ namespace FinalTest1
                 myConn.Close();
             }
         }
-
-        //public DataSet GetAllPatientID()
-        //{
-        //    try
-        //    {
-        //        myConn.Open();
-        //        cmdString.Parameters.Clear();
-        //        cmdString.CommandType = CommandType.StoredProcedure;
-        //        cmdString.CommandTimeout = 1500;
-        //        cmdString.CommandText = "GetAllPatientIDs";
-        //        SqlDataAdapter da = new SqlDataAdapter(cmdString);
-        //        DataSet ds = new DataSet();
-        //        da.Fill(ds);
-        //        return ds;
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        throw new ArgumentException(ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        myConn.Close();
-        //    }
-        //}
-
         public DataSet GetPatientByID(string patientID)
         {
             try
@@ -597,7 +538,6 @@ namespace FinalTest1
                 myConn.Close();
             }
         }
-
         public DataSet GetPhysicianByID(string physicianID)
         {
             try
@@ -623,33 +563,31 @@ namespace FinalTest1
                 myConn.Close();
             }
         }
+        //public DataSet GetAllPrescriptions()
+        //{
+        //    try
+        //    {
+        //        myConn.Open();
+        //        cmdString.Parameters.Clear();
+        //        cmdString.CommandType = CommandType.StoredProcedure;
+        //        cmdString.CommandTimeout = 1500;
+        //        cmdString.CommandText = "GetAllPrescriptions";
+        //        SqlDataAdapter da = new SqlDataAdapter(cmdString);
+        //        DataSet ds = new DataSet();
+        //        da.Fill(ds);
+        //        return ds;
 
-        public DataSet GetAllPrescriptions()
-        {
-            try
-            {
-                myConn.Open();
-                cmdString.Parameters.Clear();
-                cmdString.CommandType = CommandType.StoredProcedure;
-                cmdString.CommandTimeout = 1500;
-                cmdString.CommandText = "GetAllPrescriptions";
-                SqlDataAdapter da = new SqlDataAdapter(cmdString);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
-                return ds;
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-            }
-            catch (Exception ex)
-            {
-
-                throw new ArgumentException(ex.Message);
-            }
-            finally
-            {
-                myConn.Close();
-            }
-        }
-
+        //        throw new ArgumentException(ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        myConn.Close();
+        //    }
+        //}
         public DataRow GetPrescriptionByID(int rxNum)
         {
             try
@@ -667,11 +605,11 @@ namespace FinalTest1
 
                 if (dt.Rows.Count > 0)
                 {
-                    return dt.Rows[0]; // Return the first row (since RXNum is unique)
+                    return dt.Rows[0];
                 }
                 else
                 {
-                    return null; // No prescription found
+                    return null;
                 }  
             }
             catch (Exception ex)
@@ -683,8 +621,8 @@ namespace FinalTest1
                 myConn.Close();
             }
         }
-
-        public DataTable GetPrescriptions(string patientID, string firstName, string lastName, string dob, string sortColumn, string sortDirection)
+        public DataTable GetPrescriptions(string patientID, string firstName, string lastName, 
+            string dob, string sortColumn, string sortDirection)
         {
             try
             {
@@ -715,8 +653,8 @@ namespace FinalTest1
                 myConn.Close();
             }
         }
-
-        public DataSet GetAllRefills()
+        public DataTable GetPatients(string patientID, string firstName, string lastName, 
+            string sortColumn, string sortDirection)
         {
             try
             {
@@ -724,39 +662,18 @@ namespace FinalTest1
                 cmdString.Parameters.Clear();
                 cmdString.CommandType = CommandType.StoredProcedure;
                 cmdString.CommandTimeout = 1500;
-                cmdString.CommandText = "GetAllRefills";
-                cmdString.CommandType = CommandType.StoredProcedure;
+                cmdString.CommandText = "GetPatients";
+
+                cmdString.Parameters.AddWithValue("@PatientID", string.IsNullOrEmpty(patientID) ? (object)DBNull.Value : patientID);
+                cmdString.Parameters.AddWithValue("@FirstName", string.IsNullOrEmpty(firstName) ? (object)DBNull.Value : firstName);
+                cmdString.Parameters.AddWithValue("@LastName", string.IsNullOrEmpty(lastName) ? (object)DBNull.Value : lastName);
+                cmdString.Parameters.AddWithValue("@SortColumn", sortColumn);
+                cmdString.Parameters.AddWithValue("@SortDirection", sortDirection);
+
                 SqlDataAdapter da = new SqlDataAdapter(cmdString);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
-                return ds;
-
-            }
-            catch (Exception ex)
-            {
-
-                throw new ArgumentException(ex.Message);
-            }
-            finally
-            {
-                myConn.Close();
-            }
-        }
-
-        public DataSet GetRefillsRXNum(int RXNum)
-        {
-            try
-            {
-                myConn.Open();
-                cmdString.Parameters.Clear();
-                cmdString.CommandType = CommandType.StoredProcedure;
-                cmdString.CommandTimeout = 1500;
-                cmdString.CommandText = "GetRefillsRXNum";
-                cmdString.Parameters.AddWithValue("@RXNum", RXNum);
-                SqlDataAdapter da = new SqlDataAdapter(cmdString);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
-                return ds;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
             }
             catch (Exception ex)
             {
@@ -767,6 +684,87 @@ namespace FinalTest1
                 myConn.Close();
             }
         }
+        public DataTable GetPhysicians(string patientID, string firstName, string lastName, 
+            string sortColumn, string sortDirection)
+        {
+            try
+            {
+                myConn.Open();
+                cmdString.Parameters.Clear();
+                cmdString.CommandType = CommandType.StoredProcedure;
+                cmdString.CommandTimeout = 1500;
+                cmdString.CommandText = "GetPhysicians";
+
+                cmdString.Parameters.AddWithValue("@PhysicianID", string.IsNullOrEmpty(patientID) ? (object)DBNull.Value : patientID);
+                cmdString.Parameters.AddWithValue("@FirstName", string.IsNullOrEmpty(firstName) ? (object)DBNull.Value : firstName);
+                cmdString.Parameters.AddWithValue("@LastName", string.IsNullOrEmpty(lastName) ? (object)DBNull.Value : lastName);
+                cmdString.Parameters.AddWithValue("@SortColumn", sortColumn);
+                cmdString.Parameters.AddWithValue("@SortDirection", sortDirection);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmdString);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(ex.Message);
+            }
+            finally
+            {
+                myConn.Close();
+            }
+        }
+        //public DataSet GetAllRefills()
+        //{
+        //    try
+        //    {
+        //        myConn.Open();
+        //        cmdString.Parameters.Clear();
+        //        cmdString.CommandType = CommandType.StoredProcedure;
+        //        cmdString.CommandTimeout = 1500;
+        //        cmdString.CommandText = "GetAllRefills";
+        //        cmdString.CommandType = CommandType.StoredProcedure;
+        //        SqlDataAdapter da = new SqlDataAdapter(cmdString);
+        //        DataSet ds = new DataSet();
+        //        da.Fill(ds);
+        //        return ds;
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        throw new ArgumentException(ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        myConn.Close();
+        //    }
+        //}
+        //public DataSet GetRefillsRXNum(int RXNum)
+        //{
+        //    try
+        //    {
+        //        myConn.Open();
+        //        cmdString.Parameters.Clear();
+        //        cmdString.CommandType = CommandType.StoredProcedure;
+        //        cmdString.CommandTimeout = 1500;
+        //        cmdString.CommandText = "GetRefillsRXNum";
+        //        cmdString.Parameters.AddWithValue("@RXNum", RXNum);
+        //        SqlDataAdapter da = new SqlDataAdapter(cmdString);
+        //        DataSet ds = new DataSet();
+        //        da.Fill(ds);
+        //        return ds;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new ArgumentException(ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        myConn.Close();
+        //    }
+        //}
         public bool AddRefill(int RXNum)
         {
             try

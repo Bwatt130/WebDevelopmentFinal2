@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlTypes;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace FinalTest1
 {
@@ -17,6 +18,7 @@ namespace FinalTest1
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblError.Visible = false;
             if (!IsPostBack)
             {
                 LoadPatientData();
@@ -43,7 +45,8 @@ namespace FinalTest1
             catch (Exception ex)
             {
                 lblError.Text = "Error loading patients: " + ex.Message;
-                lblError.ForeColor = System.Drawing.Color.Red;
+                
+                lblError.Visible = true;
             }
         }
 
@@ -64,6 +67,7 @@ namespace FinalTest1
                 gvPatients.DataSource = null;
                 gvPatients.DataBind();
                 lblError.Text = "No matching records found.";
+                lblError.Visible = true;
             }
         }
         protected void btnClear_Click(object sender, EventArgs e)
@@ -126,13 +130,21 @@ namespace FinalTest1
         }
         protected void gvPatients_Sorting(object sender, GridViewSortEventArgs e)
         {
-            DataSet ds = new PharmacyDataTier().ListPatients();
-            if (ds != null && ds.Tables.Count > 0)
-            {
-                DataView dv = ds.Tables[0].DefaultView;
-                dv.Sort = e.SortExpression + " ASC";
+            PharmacyDataTier dataTier = new PharmacyDataTier();
 
-                gvPatients.DataSource = dv;
+            string sortExpression = e.SortExpression;
+            string sortDirection = (ViewState["SortDirection"] as string == "ASC") ? "DESC" : "ASC";
+            ViewState["SortDirection"] = sortDirection;
+
+            string patientID = ViewState["PatientID"] != null ? ViewState["PatientID"].ToString() : txtPatientID.Text.Trim();
+            string firstName = ViewState["FirstName"] != null ? ViewState["FirstName"].ToString() : txtFirstName.Text.Trim();
+            string lastName = ViewState["LastName"] != null ? ViewState["LastName"].ToString() : txtLastName.Text.Trim();
+
+            DataTable dt = dataTier.GetPatients(patientID, firstName, lastName, sortExpression, sortDirection);
+
+            if (dt != null)
+            {
+                gvPatients.DataSource = dt;
                 gvPatients.DataBind();
             }
         }

@@ -14,6 +14,7 @@ namespace FinalTest1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblStatus.Visible = false;
             if (!IsPostBack)
             {
                 if (Request.QueryString["PatientID"] != null)
@@ -51,11 +52,13 @@ namespace FinalTest1
                     gvPrescriptions.DataSource = null;
                     gvPrescriptions.DataBind();
                     lblStatus.Text = "No prescriptions found.";
+                    lblStatus.Visible = true;
                 }
             }
             catch (Exception ex)
             {
                 lblStatus.Text = "An error occurred: " + ex.Message;
+                lblStatus.Visible = true;
             }
         }
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -92,6 +95,7 @@ namespace FinalTest1
                 gvPrescriptions.DataSource = null;
                 gvPrescriptions.DataBind();
                 lblStatus.Text = "No prescriptions found.";
+                lblStatus.Visible = true;
             }
         }
         protected void btnClear_Click(object sender, EventArgs e)
@@ -137,19 +141,23 @@ namespace FinalTest1
                         if (success)
                         {
                             lblStatus.Text = "Refill subtracted and logged successfully.";
-                            lblStatus.ForeColor = System.Drawing.Color.Green;
+                            
+                            lblStatus.Visible = true;
                             LoadPrescriptions();
                         }
                         else
                         {
                             lblStatus.Text = "Failed to subtract refill.";
-                            lblStatus.ForeColor = System.Drawing.Color.Red;
+                            lblStatus.Visible = true;
+                            
                         }
                     }
                     catch (Exception ex)
                     {
+
                         lblStatus.Text = "An error occurred: " + ex.Message;
-                        lblStatus.ForeColor = System.Drawing.Color.Red;
+                        lblStatus.Visible = true;
+                        
                     }
                 }
                 else if (e.CommandName == "SubtractRefill")
@@ -162,19 +170,22 @@ namespace FinalTest1
                         if (success)
                         {
                             lblStatus.Text = "Refill subtracted and logged successfully.";
-                            lblStatus.ForeColor = System.Drawing.Color.Green;
+                            lblStatus.Visible = true;
+                            
                             LoadPrescriptions();
                         }
                         else
                         {
                             lblStatus.Text = "Failed to subtract refill.";
-                            lblStatus.ForeColor = System.Drawing.Color.Red;
+                            lblStatus.Visible = true;
+                            
                         }
                     }
                     catch (Exception ex)
                     {
                         lblStatus.Text = "An error occurred: " + ex.Message;
-                        lblStatus.ForeColor = System.Drawing.Color.Red;
+                        lblStatus.Visible = true;
+                        
                     }
                 }
                 else if (e.CommandName == "EditPrescription")
@@ -204,6 +215,7 @@ namespace FinalTest1
                 else
                 {
                     lblStatus.Text = "Invalid prescription number.";
+                    lblStatus.Visible = true;
                 }
             }
         }

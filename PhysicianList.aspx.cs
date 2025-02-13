@@ -12,6 +12,7 @@ namespace FinalTest1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblError.Visible = false;
             if (!IsPostBack)
             {
                 LoadPhysicianData();
@@ -35,11 +36,13 @@ namespace FinalTest1
                     gvPhysicians.DataSource = null;
                     gvPhysicians.DataBind();
                     lblError.Text = "No physicians found.";
+                    lblError.Visible = true;
                 }
             }
             catch (Exception ex)
             {
                 lblError.Text = "Error loading physicians: " + ex.Message;
+                lblError.Visible = true;
             }
         }
         protected void gvPhysicians_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -78,6 +81,7 @@ namespace FinalTest1
                 gvPhysicians.DataSource = null;
                 gvPhysicians.DataBind();
                 lblError.Text = "No matching records found.";
+                lblError.Visible = true;
             }
         }
         protected void btnClear_Click(object sender, EventArgs e)
@@ -91,13 +95,21 @@ namespace FinalTest1
 
         protected void gvPhysicians_Sorting(object sender, GridViewSortEventArgs e)
         {
-            DataSet ds = new PharmacyDataTier().ListPhysicians();
-            if (ds != null && ds.Tables.Count > 0)
-            {
-                DataView dv = ds.Tables[0].DefaultView;
-                dv.Sort = e.SortExpression + " ASC";
+            PharmacyDataTier dataTier = new PharmacyDataTier();
 
-                gvPhysicians.DataSource = dv;
+            string sortExpression = e.SortExpression;
+            string sortDirection = (ViewState["SortDirection"] as string == "ASC") ? "DESC" : "ASC";
+            ViewState["SortDirection"] = sortDirection;
+
+            string physicianID = ViewState["PhysicianID"] != null ? ViewState["PhysicianID"].ToString() : txtPhysicianID.Text.Trim();
+            string firstName = ViewState["FirstName"] != null ? ViewState["FirstName"].ToString() : txtFirstName.Text.Trim();
+            string lastName = ViewState["LastName"] != null ? ViewState["LastName"].ToString() : txtLastName.Text.Trim();
+
+            DataTable dt = dataTier.GetPhysicians(physicianID, firstName, lastName, sortExpression, sortDirection);
+
+            if (dt != null)
+            {
+                gvPhysicians.DataSource = dt;
                 gvPhysicians.DataBind();
             }
         }

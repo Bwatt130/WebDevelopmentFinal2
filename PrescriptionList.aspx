@@ -60,7 +60,6 @@
                 </Columns>
             </asp:GridView>
             <div class="text-center mt-4">
-<%--                <asp:Button ID="btnUpdate" runat="server" Text="Add Prescription" CssClass="btn btn-primary" OnClick="btnAddPrescription_Click" />--%>
                 <asp:Button ID="btnClose" runat="server" Text="Close" CssClass="btn btn-danger" OnClick="btnClose_Click" />
             </div>
 

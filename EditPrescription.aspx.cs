@@ -40,12 +40,13 @@ namespace FinalTest1
             else
             {
                 lblStatus.Text = "Prescription not found.";
-                lblStatus.ForeColor = System.Drawing.Color.Red;
+                
             }
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            lblStatus.Visible = false;
             try
             {
                 PharmacyDataTier dataTier = new PharmacyDataTier();
@@ -61,21 +62,39 @@ namespace FinalTest1
 
                 if (success)
                 {
+                    ClearFields();
                     lblStatus.Text = "Prescription updated successfully.";
-                    lblStatus.ForeColor = System.Drawing.Color.Green;
+                    
+                    lblStatus.Visible = true;
                    
                 }
                 else
                 {
                     lblStatus.Text = "Failed to update prescription.";
-                    lblStatus.ForeColor = System.Drawing.Color.Red;
+                    
                 }
             }
             catch (Exception ex)
             {
                 lblStatus.Text = "An error occurred: " + ex.Message;
-                lblStatus.ForeColor = System.Drawing.Color.Red;
+                
             }
+        }
+
+        public void ClearFields()
+        {
+            txtDosage.Enabled = false;
+            txtFrequency.Enabled = false;
+            txtMedicationName.Enabled = false;
+            txtPrescriptionDate.Enabled = false;
+            txtRefillCount.Enabled = false;
+            ddlAdministrationRoute.Enabled = false;
+            txtDosage.Text = string.Empty;
+            txtFrequency.Text = string.Empty;
+            txtMedicationName.Text = string.Empty;
+            txtPrescriptionDate.Text = string.Empty;
+            txtRefillCount.Text = string.Empty;
+            ddlAdministrationRoute.Text = string.Empty;
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

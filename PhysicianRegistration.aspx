@@ -21,26 +21,38 @@
                     <label for="txtFirstName" class="form-label">First Name</label>
                     <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control" placeholder="Enter first name"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" ControlToValidate="txtFirstName"
-                        ErrorMessage="First Name is required." ForeColor="Red" CssClass="small d-block" />
+                        ErrorMessage="First Name is required." ForeColor="Red" CssClass="small d-block"/>
+                    <asp:RegularExpressionValidator ID="revFirstName" runat="server" ControlToValidate="txtFirstName"
+                        ValidationExpression="^[A-Za-z\s]{1,50}$" ErrorMessage="First Name must be 1-50 alphabetic characters."
+                        ForeColor="Red" CssClass="small d-block"/>
                 </div>
 
                 <div class="col-md-6">
                     <label for="txtLastName" class="form-label">Last Name</label>
                     <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" placeholder="Enter last name"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvLastName" runat="server" ControlToValidate="txtLastName"
-                        ErrorMessage="Last Name is required." ForeColor="Red" CssClass="small d-block" />
+                        ErrorMessage="Last Name is required." ForeColor="Red" CssClass="small d-block"/>
+                    <asp:RegularExpressionValidator ID="revLastName" runat="server" ControlToValidate="txtLastName"
+                        ValidationExpression="^[A-Za-z\s]{1,50}$" ErrorMessage="Last Name must be 1-50 alphabetic characters."
+                        ForeColor="Red" CssClass="small d-block"/>
                 </div>
 
                 <div class="col-md-6">
                     <label for="txtMiddleInitial" class="form-label">Middle Initial</label>
                     <asp:TextBox ID="txtMiddleInitial" runat="server" CssClass="form-control" placeholder="Enter middle initial (Optional)"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="revMiddleInitial" runat="server" ControlToValidate="txtMiddleInitial"
+                        ValidationExpression="^[A-Za-z]?$" ErrorMessage="Middle Initial must be a single letter if provided."
+                        ForeColor="Red" CssClass="small d-block"/>
                 </div>
 
                 <div class="col-md-6">
                     <label for="txtDOB" class="form-label">Date of Birth</label>
                     <asp:TextBox ID="txtDOB" runat="server" CssClass="form-control" placeholder="YYYY-MM-DD"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvDOB" runat="server" ControlToValidate="txtDOB"
-                        ErrorMessage="Date of Birth is required." ForeColor="Red" CssClass="small d-block" />
+                        ErrorMessage="Date of Birth is required." ForeColor="Red" CssClass="small d-block"/>
+                    <asp:RegularExpressionValidator ID="revDOB" runat="server" ControlToValidate="txtDOB"
+                        ValidationExpression="^\d{4}-\d{2}-\d{2}$" ErrorMessage="Date of Birth must be in YYYY-MM-DD format."
+                        ForeColor="Red" CssClass="small d-block"/>
                 </div>
 
                 <div class="col-md-6">
@@ -56,13 +68,12 @@
 
                 <div class="col-md-6">
                     <label for="txtPhoneNumber" class="form-label">Phone Number</label>
-                    <asp:TextBox ID="txtPhoneNumber" runat="server" CssClass="form-control" placeholder="Enter phone number"></asp:TextBox>
+                    <asp:TextBox ID="txtPhoneNumber" runat="server" CssClass="form-control" placeholder="XXX-XXX-XXXX"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvPhoneNumber" runat="server" ControlToValidate="txtPhoneNumber"
-                        ErrorMessage="Phone number is required." ForeColor="Red" CssClass="small d-block"  EnableClientScript="true"/>
+                        ErrorMessage="Phone Number is required." ForeColor="Red" CssClass="small d-block"/>
                     <asp:RegularExpressionValidator ID="revPhoneNumber" runat="server" ControlToValidate="txtPhoneNumber"
-                        ValidationExpression="^\d{3}-\d{3}-\d{4}$"
-                        ErrorMessage="Phone number must be in XXX-XXX-XXXX format." ForeColor="Blue"
-                        CssClass="small d-block" Display="Dynamic"  EnableClientScript="true"/>
+                        ValidationExpression="^\d{3}-\d{3}-\d{4}$" ErrorMessage="Phone number must be in XXX-XXX-XXXX format."
+                        ForeColor="Red" CssClass="small d-block"/>
                 </div>
 
                 <div class="col-md-6">
@@ -70,24 +81,29 @@
                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Enter email"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail"
                         ErrorMessage="Email is required." ForeColor="Red" CssClass="small d-block"  EnableClientScript="true"/>
-                    <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail"
-                        ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-                        ErrorMessage="Enter a valid email address (e.g., user@example.com)." ForeColor="Blue"
-                        CssClass="small d-block" Display="Dynamic"  EnableClientScript="true"/>
+                    <asp:RegularExpressionValidator ID="revEmail" runat="server" ErrorMessage="Email must be in xx@xxx.xx format." 
+                        ControlToValidate="txtEmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                        ForeColor="Red" CssClass="small d-block" />
                 </div>
 
                 <div class="col-md-6">
                     <label for="txtStreetName" class="form-label">Street Name</label>
                     <asp:TextBox ID="txtStreetName" runat="server" CssClass="form-control" placeholder="Enter street name"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvStreetName" runat="server" ControlToValidate="txtStreetName"
-                        ErrorMessage="Street Name is required." ForeColor="Red" CssClass="small d-block" />
+                        ErrorMessage="Street Name is required." ForeColor="Red" CssClass="small d-block"/>
+                    <asp:RegularExpressionValidator ID="revStreetName" runat="server" ControlToValidate="txtStreetName"
+                        ValidationExpression="^.{1,100}$" ErrorMessage="Street Name must be between 1-100 characters."
+                        ForeColor="Red" CssClass="small d-block"/>
                 </div>
 
                 <div class="col-md-6">
                     <label for="txtCity" class="form-label">City</label>
                     <asp:TextBox ID="txtCity" runat="server" CssClass="form-control" placeholder="Enter city"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="txtCity"
-                        ErrorMessage="City is required." ForeColor="Red" CssClass="small d-block" />
+                        ErrorMessage="City is required." ForeColor="Red" CssClass="small d-block"/>
+                    <asp:RegularExpressionValidator ID="revCity" runat="server" ControlToValidate="txtCity"
+                        ValidationExpression="^.{1,50}$" ErrorMessage="City must be between 1-50 characters."
+                        ForeColor="Red" CssClass="small d-block"/>
                 </div>
 
                 <div class="col-md-6">
@@ -101,17 +117,28 @@
                     <label for="txtZip" class="form-label">Zip Code</label>
                     <asp:TextBox ID="txtZip" runat="server" CssClass="form-control" placeholder="Enter zip code"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvZip" runat="server" ControlToValidate="txtZip"
-                        ErrorMessage="Zip Code is required." ForeColor="Red" CssClass="small d-block" />
+                        ErrorMessage="Zip Code is required." ForeColor="Red" CssClass="small d-block"/>
+                    <asp:RegularExpressionValidator ID="revZipCode" runat="server" ControlToValidate="txtZip"
+                        ValidationExpression="^\d{5}$" ErrorMessage="Zip Code must be exactly 5 digits."
+                        ForeColor="Red" CssClass="small d-block"/>
                 </div>
 
                 <div class="col-md-6">
                     <label for="txtSpecialty1" class="form-label">Specialty 1</label>
                     <asp:TextBox ID="txtSpecialty1" runat="server" CssClass="form-control" placeholder="Enter first specialty"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvSpecialty1" runat="server" ControlToValidate="txtSpecialty1"
+                        ErrorMessage="Specialty is required." ForeColor="Red" CssClass="small d-block"/>
+                    <asp:RegularExpressionValidator ID="revSpecialty1" runat="server" ControlToValidate="txtSpecialty1"
+                        ValidationExpression="^.{0,50}$" ErrorMessage="Specialty 1 must be up to 50 characters long if provided."
+                        ForeColor="Red" CssClass="small d-block"/>
                 </div>
 
                 <div class="col-md-6">
                     <label for="txtSpecialty2" class="form-label">Specialty 2</label>
                     <asp:TextBox ID="txtSpecialty2" runat="server" CssClass="form-control" placeholder="Enter second specialty"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="revSpecialty2" runat="server" ControlToValidate="txtSpecialty2"
+                        ValidationExpression="^.{0,50}$" ErrorMessage="Specialty 2 must be up to 50 characters long if provided."
+                        ForeColor="Red" CssClass="small d-block"/>
                 </div>
             </div>
 

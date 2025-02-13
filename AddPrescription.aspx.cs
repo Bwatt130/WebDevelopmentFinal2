@@ -44,7 +44,7 @@ namespace FinalTest1
             catch (Exception ex)
             {
                 lblMessage.Text = "Error loading physicians: " + ex.Message;
-                lblMessage.ForeColor = System.Drawing.Color.Red;
+                
             }
         }
 
@@ -65,7 +65,7 @@ namespace FinalTest1
             if (!int.TryParse(txtRefillAmt.Text.Trim(), out refillCount))
             {
                 lblMessage.Text = "Invalid refill count. Please enter a valid number.";
-                lblMessage.ForeColor = System.Drawing.Color.Red;
+                
                 return;
             }
 
@@ -73,7 +73,7 @@ namespace FinalTest1
                 string.IsNullOrEmpty(dosage) || string.IsNullOrEmpty(frequency) || string.IsNullOrEmpty(administrationRoute))
             {
                 lblMessage.Text = "All fields are required.";
-                lblMessage.ForeColor = System.Drawing.Color.Red;
+                
                 return;
             }
 
@@ -88,7 +88,7 @@ namespace FinalTest1
             dataTier.AddPrescription(patientID, physicianID, medicationName, dosage, frequency, administrationRoute, refillCount);
 
             lblMessage.Text = "Prescription added successfully.";
-            lblMessage.ForeColor = System.Drawing.Color.Green;
+            
             Response.Redirect("PrescriptionList.aspx?PatientID=" + txtPatientID.Text);
         }
 

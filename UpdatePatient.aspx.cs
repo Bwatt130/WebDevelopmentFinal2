@@ -58,73 +58,74 @@ namespace FinalTest1
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+            lblStatus.Visible = false;
             if (string.IsNullOrWhiteSpace(txtFirstName.Text))
             {
                 lblStatus.Text = "First Name is required.";
-                lblStatus.ForeColor = System.Drawing.Color.Red;
+                
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtLastName.Text))
             {
                 lblStatus.Text = "Last Name is required.";
-                lblStatus.ForeColor = System.Drawing.Color.Red;
+                
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtDOB.Text))
             {
                 lblStatus.Text = "Date of Birth is required.";
-                lblStatus.ForeColor = System.Drawing.Color.Red;
+                
                 return;
             }
 
             if (ddlGender.SelectedValue == "")
             {
                 lblStatus.Text = "Please select a gender.";
-                lblStatus.ForeColor = System.Drawing.Color.Red;
+                
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtStreetName.Text))
             {
                 lblStatus.Text = "Street Name is required.";
-                lblStatus.ForeColor = System.Drawing.Color.Red;
+                
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtCity.Text))
             {
                 lblStatus.Text = "City is required.";
-                lblStatus.ForeColor = System.Drawing.Color.Red;
+                
                 return;
             }
 
             if (ddlState.SelectedValue == "")
             {
                 lblStatus.Text = "Please select a state.";
-                lblStatus.ForeColor = System.Drawing.Color.Red;
+                
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtZip.Text))
             {
                 lblStatus.Text = "Zip Code is required.";
-                lblStatus.ForeColor = System.Drawing.Color.Red;
+                
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtEmail.Text))
             {
                 lblStatus.Text = "Email is required.";
-                lblStatus.ForeColor = System.Drawing.Color.Red;
+                
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtPhoneNumber.Text))
             {
                 lblStatus.Text = "Phone Number is required.";
-                lblStatus.ForeColor = System.Drawing.Color.Red;
+                
                 return;
             }
 
@@ -155,13 +156,55 @@ namespace FinalTest1
                 string secondaryInsurance = txtSecondaryInsurance.Text;
 
                 bool success = dataTier.UpdatePatient(patientID, firstName, middleInt, lastName, dob, gender, phoneNumber, email, streetName, city, state, zip, primaryInsurance, secondaryInsurance);
-
-                lblStatus.Text = success ? "Patient information updated successfully." : "Failed to update patient information.";
+                if (success)
+                {
+                    ClearFields();
+                    lblStatus.Text = "Patient information updated successfully.";
+                    lblStatus.Visible = true;  
+                }
+                else
+                {
+                    lblStatus.Text = "Failed to update patient information.";
+                }
             }
             catch (Exception ex)
             {
                 lblStatus.Text = "An error occurred: " + ex.Message;
             }
+        }
+
+        private void ClearFields()
+        {
+            txtPatientID.Text = string.Empty;
+            txtFirstName.Text = string.Empty;
+            txtLastName.Text = string.Empty;
+            txtMiddleInt.Text = string.Empty;
+            txtDOB.Text = string.Empty;
+            ddlGender.Text = string.Empty;
+            txtPhoneNumber.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtStreetName.Text = string.Empty;
+            txtCity.Text = string.Empty;
+            ddlState.SelectedIndex = 33;
+            txtZip.Text = string.Empty;
+            txtPrimaryInsurance.Text = string.Empty;
+            txtSecondaryInsurance.Text = string.Empty;
+            lblStatus.Text = string.Empty;
+            txtPatientID.Enabled = false;
+            txtFirstName.Enabled = false;
+            txtLastName.Enabled = false;
+            txtMiddleInt.Enabled = false;
+            txtDOB.Enabled = false;
+            ddlGender.Enabled = false;
+            txtPhoneNumber.Enabled = false;
+            txtEmail.Enabled = false;
+            txtStreetName.Enabled = false;
+            txtCity.Enabled = false;
+            ddlState.Enabled = false;
+            txtZip.Enabled = false;
+            txtPrimaryInsurance.Enabled = false;
+            txtSecondaryInsurance.Enabled = false;
+
         }
         protected void btnClose_Click(object sender, EventArgs e)
         {
